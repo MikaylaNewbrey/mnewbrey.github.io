@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>{{ page.title }} – {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}"></noscript>
+  </head>
+  <body class="is-preload">
+    <div id="wrapper">
+      <header id="header">
+        <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+      </header>
+
+      <div id="main">
+        <section class="post">
+          <header class="major">
+            <span class="date">{{ page.date | date: "%b %-d, %Y" }}</span>
+            <h1>{{ page.title }}</h1>
+            {% if page.subtitle %}<p>{{ page.subtitle }}</p>{% endif %}
+          </header>
+
+          {% if page.image %}
+            <span class="image main"><img src="{{ page.image | relative_url }}" alt=""></span>
+          {% endif %}
+
+          {{ content }}
+        </section>
+      </div>
+
+      <footer id="footer" style="text-align:center; padding:2rem 0;">
+        <a class="button" href="{{ '/' | relative_url }}">← Back to Home</a>
+      </footer>
+    </div>
+
+    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  </body>
+</html>
