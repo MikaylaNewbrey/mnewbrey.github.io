@@ -2,72 +2,139 @@
 layout: nil
 title: Science in Action
 ---
-
 <!DOCTYPE HTML>
+<!--
+  Massively by HTML5 UP
+-->
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Science in Action – {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}"></noscript>
-  <style>
-    .lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
-    .lb-inner{max-width:92vw;max-height:88vh;padding:1rem}
-    .lb img{max-width:100%;max-height:80vh;display:block;margin:0 auto}
-    .lb-cap{color:#fff;margin-top:.75rem;text-align:center;opacity:.9}
-    .lb-close{position:absolute;top:1rem;right:1rem;background:#fff;padding:.4rem .6rem;border-radius:.5rem;cursor:pointer}
-  </style>
-</head>
-<body class="is-preload">
-<div id="wrapper">
-  <header id="header">
-    <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
-  </header>
+  <head>
+    <title>Science in Action – {{ site.title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
+    <style>
+      /* Simple lightbox overlay */
+      .lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
+      .lb-inner{max-width:92vw;max-height:88vh;padding:1rem}
+      .lb img{max-width:100%;max-height:80vh;display:block;margin:0 auto}
+      .lb-cap{color:#fff;margin-top:.75rem;text-align:center;opacity:.9}
+      .lb-close{position:absolute;top:1rem;right:1rem;background:#fff;padding:.4rem .6rem;border-radius:.5rem;cursor:pointer}
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper" class="fade-in">
 
-  <div id="main">
-    <section class="posts">
-      {% for item in site.data.gallery %}
-      <article>
-        <a href="{{ item.file | relative_url }}" class="image fit" data-cap="{{ item.title }} — {{ item.caption }}">
-          <img src="{{ item.file | relative_url }}" alt="{{ item.title }}">
-        </a>
-        <header><h3>{{ item.title }}</h3></header>
-        <p>{{ item.caption }}</p>
-      </article>
-      {% endfor %}
-    </section>
-  </div>
+      <!-- Header -->
+      <header id="header">
+        <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+      </header>
 
-  <footer id="footer" style="text-align:center; padding:2rem 0;">
-    <a class="button" href="{{ '/' | relative_url }}">← Back to Home</a>
-  </footer>
-</div>
+      <!-- Nav -->
+      <nav id="nav">
+        <ul class="links">
+          <li><a href="{{ '/' | relative_url }}">Field Notes & Research</a></li>
+          <li><a href="{{ '/about.html' | relative_url }}">About</a></li>
+          <li class="active"><a href="{{ '/science.html' | relative_url }}">Science In Action</a></li>
+        </ul>
+      </nav>
 
-<div class="lb" id="lb">
-  <div class="lb-inner">
-    <div class="lb-close" id="lbClose">Close</div>
-    <img id="lbImg" src="" alt="">
-    <div class="lb-cap" id="lbCap"></div>
-  </div>
-</div>
+      <!-- Main -->
+      <div id="main">
 
-<script>
-  const lb=document.getElementById('lb'),
-        lbImg=document.getElementById('lbImg'),
-        lbCap=document.getElementById('lbCap'),
-        lbClose=document.getElementById('lbClose');
+        <!-- Gallery grid (uses theme's .posts/.image.fit cards) -->
+        <section class="posts">
+          {% if site.data.gallery and site.data.gallery.size > 0 %}
+            {% for item in site.data.gallery %}
+            <article>
+              <a href="{{ item.file | relative_url }}" class="image fit js-lb" data-cap="{{ item.title }} — {{ item.caption }}">
+                <img src="{{ item.file | relative_url }}" alt="{{ item.title }}">
+              </a>
+              <header><h3>{{ item.title }}</h3></header>
+              <p>{{ item.caption }}</p>
+            </article>
+            {% endfor %}
+          {% else %}
+            <p>No images yet. Add entries to <code>_data/gallery.yml</code> and files under <code>assets/images/science/</code>.</p>
+          {% endif %}
+        </section>
 
-  document.querySelectorAll('a.image.fit').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      lbImg.src=a.href;
-      lbCap.textContent=a.dataset.cap||'';
-      lb.style.display='flex';
-    });
-  });
-  lbClose.onclick=()=>lb.style.display='none';
-  lb.onclick=e=>{ if(e.target===lb) lb.style.display='none'; };
-</script>
-</body>
+      </div>
+
+      <!-- Footer (same style as index) -->
+      <footer id="footer">
+        <section class="split contact">
+          <section class="alt">
+            <h3>Affiliation</h3>
+            <p><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">University of Massachusetts Amherst, OEB Program</a></p>
+          </section>
+          <section>
+            <h3>ORCiD</h3>
+            <p><a href="https://orcid.org/0009-0008-1202-4962" target="_blank">0009-0008-1202-4962</a></p>
+          </section>
+          <section>
+            <h3>Email</h3>
+            <p><a href="mailto:YOUR@EMAIL">YOUR@EMAIL</a></p>
+          </section>
+          <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+              <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+              <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+              <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+          </section>
+        </section>
+      </footer>
+
+      <!-- Copyright -->
+      <div id="copyright">
+        <ul>
+          <li>&copy; Mikayla Newbrey</li>
+          <li>All Views Expressed Are My Own</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lb" id="lb">
+      <div class="lb-inner">
+        <div class="lb-close" id="lbClose">Close</div>
+        <img id="lbImg" src="" alt="">
+        <div class="lb-cap" id="lbCap"></div>
+      </div>
+    </div>
+
+    <!-- Scripts (theme + tiny lightbox JS) -->
+    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const lb = document.getElementById('lb');
+        const lbImg = document.getElementById('lbImg');
+        const lbCap = document.getElementById('lbCap');
+        const lbClose = document.getElementById('lbClose');
+
+        document.querySelectorAll('#main a.js-lb').forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            lbImg.src = a.getAttribute('href');
+            lbCap.textContent = a.dataset.cap || '';
+            lb.style.display = 'flex';
+          });
+        });
+
+        lbClose.addEventListener('click', function(){ lb.style.display = 'none'; });
+        lb.addEventListener('click', function(e){ if (e.target === lb) lb.style.display = 'none'; });
+      });
+    </script>
+  </body>
 </html>
