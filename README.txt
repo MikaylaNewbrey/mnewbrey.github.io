@@ -2,7 +2,7 @@
 
 This repository hosts my personal website and electronic research notebook, built with [Jekyll](https://jekyllrb.com/) and the [Massively theme by HTML5 UP](https://html5up.net/massively).
 
-**Live site:** [mnewbrey.com](https://www.mnewbrey.com)
+**Live site:** [mnewbrey.com](www.mnewbrey.com)
 
 ## About
 I am a PhD student in **Organismal and Evolutionary Biology** at the University of Massachusetts Amherst.  
@@ -29,3 +29,4 @@ Credits:
 		Scrollex (github.com/ajlkn/jquery.scrollex)
 
 		Responsive Tools (github.com/ajlkn/responsive-tools)
+
