@@ -1,0 +1,8 @@
+title: Mikayla Newbrey
+url: https://www.mnewbrey.com
+baseurl: ""          # keep empty for custom domain
+timezone: America/New_York
+markdown: kramdown
+permalink: /posts/:title/
+excerpt_separator: "<!--more-->"
+plugins: []          # GitHub Pages safe mode (no extra plugins)
