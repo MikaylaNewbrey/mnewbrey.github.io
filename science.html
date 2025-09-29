@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
     <style>
+      /* simple lightbox */
       .lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
       .lb-inner{max-width:92vw;max-height:88vh;padding:1rem}
       .lb img{max-width:100%;max-height:80vh;display:block;margin:0 auto}
@@ -17,20 +18,26 @@
     </style>
   </head>
   <body class="is-preload">
+    <!-- Wrapper -->
     <div id="wrapper" class="fade-in">
+
+      <!-- Header -->
       <header id="header">
         <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
       </header>
 
+      <!-- Nav -->
       <nav id="nav">
         <ul class="links">
           <li><a href="{{ '/' | relative_url }}">Field Notes & Research</a></li>
           <li><a href="{{ '/about.html' | relative_url }}">About</a></li>
-          <li class="active"><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
+          <li class="active"><a href="{{ '/science.html' | relative_url }}">Science In Action</a></li>
         </ul>
       </nav>
 
+      <!-- Main -->
       <div id="main">
+        <!-- Gallery grid -->
         <section class="posts">
           {% if site.data.gallery and site.data.gallery.size > 0 %}
             {% for item in site.data.gallery %}
@@ -44,12 +51,13 @@
             {% endfor %}
           {% else %}
             <p>No images yet. Add entries to <code>_data/gallery.yml</code> and files under
-              <code>images/science/</code> (e.g., <code>/images/science/field01.jpg</code>).
+              <code>/images/science/</code> (e.g., <code>/images/science/field01.jpg</code>).
             </p>
           {% endif %}
         </section>
       </div>
 
+      <!-- Footer -->
       <footer id="footer">
         <section class="split contact">
           <section class="alt">
@@ -76,6 +84,7 @@
         </section>
       </footer>
 
+      <!-- Copyright -->
       <div id="copyright">
         <ul>
           <li>&copy; Mikayla Newbrey</li>
@@ -93,7 +102,7 @@
       </div>
     </div>
 
-    <!-- Theme scripts + lightbox init -->
+    <!-- Scripts -->
     <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
@@ -107,6 +116,7 @@
         const lbImg = document.getElementById('lbImg');
         const lbCap = document.getElementById('lbCap');
         const lbClose = document.getElementById('lbClose');
+
         document.querySelectorAll('#main a.js-lb').forEach(a=>{
           a.addEventListener('click', e=>{
             e.preventDefault();
@@ -115,6 +125,7 @@
             lb.style.display = 'flex';
           });
         });
+
         lbClose.addEventListener('click', ()=> lb.style.display = 'none');
         lb.addEventListener('click', e=>{ if (e.target === lb) lb.style.display = 'none'; });
       });
