@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-    <!-- tiny lightbox styles -->
     <style>
+      /* lightweight lightbox */
       .lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
       .lb-inner{max-width:92vw;max-height:88vh;padding:1rem}
       .lb img{max-width:100%;max-height:80vh;display:block;margin:0 auto}
@@ -19,6 +19,7 @@
     </style>
   </head>
   <body class="is-preload">
+
     <!-- Wrapper -->
     <div id="wrapper" class="fade-in">
 
@@ -27,7 +28,7 @@
         <a href="index.html" class="logo">{{ site.title }}</a>
       </header>
 
-      <!-- Nav -->
+      <!-- Nav (Science active) -->
       <nav id="nav">
         <ul class="links">
           <li><a href="index.html">Field Notes & Research</a></li>
@@ -38,6 +39,8 @@
 
       <!-- Main -->
       <div id="main">
+
+        <!-- Page header -->
         <section class="post">
           <header class="major">
             <h1>Science in Action</h1>
@@ -45,7 +48,7 @@
           </header>
         </section>
 
-        <!-- Gallery grid -->
+        <!-- Gallery grid (replaces blog posts loop) -->
         <section class="posts">
           {% if site.data.gallery and site.data.gallery.size > 0 %}
             {% for item in site.data.gallery %}
@@ -63,6 +66,7 @@
             </p>
           {% endif %}
         </section>
+
       </div>
 
       <!-- Footer -->
@@ -99,9 +103,10 @@
           <li>All Views Expressed Are My Own</li>
         </ul>
       </div>
+
     </div>
 
-    <!-- Theme scripts -->
+    <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -113,7 +118,6 @@
     <!-- Lightbox init -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        // build overlay once
         const lb = document.createElement('div');
         lb.className = 'lb';
         lb.innerHTML = `
