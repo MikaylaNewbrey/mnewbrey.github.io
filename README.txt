@@ -1,21 +1,19 @@
-Massively by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+# Mikayla Newbrey – Research Notebook
 
+This repository hosts my personal website and electronic research notebook, built with [Jekyll](https://jekyllrb.com/) and the [Massively theme by HTML5 UP](https://html5up.net/massively).
 
-This is Massively, a text-heavy, article-oriented design built around a huge background
-image (with a new parallax implementation I'm testing) and scroll effects (powered by
-Scrollex). A *slight* departure from all the one-pagers I've been doing lately, but one
-that fulfills a few user requests and makes use of some new techniques I've been wanting
-to try out. Enjoy it :)
+**Live site:** [mnewbrey.com](https://www.mnewbrey.com)
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+## About
+I am a PhD student in **Organismal and Evolutionary Biology** at the University of Massachusetts Amherst.  
+My research explores how **climate change shapes marine life** and the adaptive capacity of organisms to environmental stressors.
 
-(* = not included)
+## Features
+- Blog-style posts for lab notes, research updates, and fieldwork logs  
+- Static pages for background info (About, CV, etc.)  
+- Support for featured images and inline figures  
+- ORCiD + academic profile links in the footer  
 
-AJ
-aj@lkn.io | @ajlkn
 
 
 Credits:
@@ -29,4 +27,5 @@ Credits:
 	Other:
 		jQuery (jquery.com)
 		Scrollex (github.com/ajlkn/jquery.scrollex)
+
 		Responsive Tools (github.com/ajlkn/responsive-tools)
