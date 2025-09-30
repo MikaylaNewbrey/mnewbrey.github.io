@@ -1,3 +1,7 @@
+---
+title: Science in Action
+---
+
 <!doctype html>
 <html>
   <head>
@@ -6,8 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
-
-    <!-- tiny lightbox styles -->
     <style>
       .lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
       .lb-inner{max-width:92vw;max-height:88vh;padding:1rem}
@@ -19,12 +21,10 @@
   <body class="is-preload">
     <div id="wrapper" class="fade-in">
 
-      <!-- Header -->
       <header id="header">
         <a href="/" class="logo">Mikayla Newbrey</a>
       </header>
 
-      <!-- Nav -->
       <nav id="nav">
         <ul class="links">
           <li><a href="/">Field Notes & Research</a></li>
@@ -33,7 +33,6 @@
         </ul>
       </nav>
 
-      <!-- Main -->
       <div id="main">
         <section class="post">
           <header class="major">
@@ -42,7 +41,7 @@
           </header>
         </section>
 
-        <!-- Gallery grid -->
+        <!-- Gallery -->
         <section class="posts">
           {% if site.data.gallery and site.data.gallery.size > 0 %}
             {% for item in site.data.gallery %}
@@ -55,17 +54,11 @@
             </article>
             {% endfor %}
           {% else %}
-            <p>No images yet. Add entries to <code>_data/gallery.yml</code> and files under
-              <code>/images/science/</code>. Example:
-            </p>
-            <pre><code>- file: /images/science/field01.jpg
-  title: Plankton tow — Gloucester
-  caption: GMWS, June 2025.</code></pre>
+            <p>No images yet. Add entries to <code>_data/gallery.yml</code> and files under <code>/images/science/</code>.</p>
           {% endif %}
         </section>
       </div>
 
-      <!-- Footer -->
       <footer id="footer">
         <section class="split contact">
           <section class="alt">
@@ -92,17 +85,14 @@
         </section>
       </footer>
 
-      <!-- Copyright -->
       <div id="copyright">
         <ul>
           <li>&copy; Mikayla Newbrey</li>
           <li>All Views Expressed Are My Own</li>
         </ul>
       </div>
-
     </div>
 
-    <!-- Scripts -->
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/jquery.scrollex.min.js"></script>
     <script src="/assets/js/jquery.scrolly.min.js"></script>
@@ -111,7 +101,6 @@
     <script src="/assets/js/util.js"></script>
     <script src="/assets/js/main.js"></script>
 
-    <!-- Lightbox init -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const lb = document.createElement('div');
