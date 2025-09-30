@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+
+    <!-- tiny lightbox styles -->
+    <style>
+      .lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
+      .lb-inner{max-width:92vw;max-height:88vh;padding:1rem}
+      .lb img{max-width:100%;max-height:80vh;display:block;margin:0 auto}
+      .lb-cap{color:#fff;margin-top:.75rem;text-align:center;opacity:.9}
+      .lb-close{position:absolute;top:1rem;right:1rem;background:#fff;padding:.4rem .6rem;border-radius:.5rem;cursor:pointer}
+    </style>
   </head>
   <body class="is-preload">
     <div id="wrapper" class="fade-in">
@@ -31,7 +40,28 @@
             <h1>Science in Action</h1>
             <p>Field & lab snapshots from ongoing work.</p>
           </header>
-          <p>Page loads. We’ll add the gallery next.</p>
+        </section>
+
+        <!-- Gallery grid -->
+        <section class="posts">
+          {% if site.data.gallery and site.data.gallery.size > 0 %}
+            {% for item in site.data.gallery %}
+            <article>
+              <a href="{{ item.file | relative_url }}" class="image fit js-lb" data-cap="{{ item.title }} — {{ item.caption }}">
+                <img src="{{ item.file | relative_url }}" alt="{{ item.title }}">
+              </a>
+              <header><h3>{{ item.title }}</h3></header>
+              <p>{{ item.caption }}</p>
+            </article>
+            {% endfor %}
+          {% else %}
+            <p>No images yet. Add entries to <code>_data/gallery.yml</code> and files under
+              <code>/images/science/</code>. Example:
+            </p>
+            <pre><code>- file: /images/science/field01.jpg
+  title: Plankton tow — Gloucester
+  caption: GMWS, June 2025.</code></pre>
+          {% endif %}
         </section>
       </div>
 
@@ -80,5 +110,36 @@
     <script src="/assets/js/breakpoints.min.js"></script>
     <script src="/assets/js/util.js"></script>
     <script src="/assets/js/main.js"></script>
+
+    <!-- Lightbox init -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const lb = document.createElement('div');
+        lb.className = 'lb';
+        lb.innerHTML = `
+          <div class="lb-inner">
+            <div class="lb-close" id="lbClose">Close</div>
+            <img id="lbImg" src="" alt="">
+            <div class="lb-cap" id="lbCap"></div>
+          </div>`;
+        document.body.appendChild(lb);
+
+        const lbImg = document.getElementById('lbImg');
+        const lbCap = document.getElementById('lbCap');
+        const lbClose = document.getElementById('lbClose');
+
+        document.querySelectorAll('a.js-lb').forEach(a=>{
+          a.addEventListener('click', e=>{
+            e.preventDefault();
+            lbImg.src = a.href;
+            lbCap.textContent = a.dataset.cap || '';
+            lb.style.display = 'flex';
+          });
+        });
+
+        lbClose.addEventListener('click', ()=> lb.style.display = 'none');
+        lb.addEventListener('click', e=>{ if (e.target === lb) lb.style.display = 'none'; });
+      });
+    </script>
   </body>
 </html>
