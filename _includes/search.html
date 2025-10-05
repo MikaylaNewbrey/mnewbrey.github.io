@@ -69,27 +69,28 @@
   }
 
   function render(list, q){
-    if (!q) { results.innerHTML = ''; return; }
-    const count = list.length;
-    const header = `<li style="list-style:none;margin:.25rem 0 .5rem;opacity:.8">${count} matching document${count===1?'':'s'}</li>`;
-    const items = list.map(it => {
-      const title = highlight(it.title || 'Untitled', q);
-      const badge = esc(it.section || (it.kind==='post'?'Post':'Page'));
-      const date  = it.date ? ` — ${esc(it.date)}` : '';
-      const snip  = makeSnippet(it.content || '', q, 160);
-      return `
-        <li style="margin:.6rem 0;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.08)">
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
-            <span style="font-size:.75rem;padding:.15rem .45rem;border:1px solid rgba(255,255,255,.35);border-radius:999px;opacity:.85">${badge}</span>
-            <a class="sr" href="${it.url}" style="color:#fff;text-decoration:none;font-weight:700">${title}</a>
-            <span style="opacity:.7;font-size:.9rem">${date}</span>
-          </div>
-          <div style="opacity:.85;font-size:.95rem">${snip}</div>
-        </li>`;
-    }).join('');
-    results.innerHTML = header + items;
-  }
-
+  if (!q) { results.innerHTML = ''; return; }
+  const count = list.length;
+  const header = `<li style="list-style:none;margin:.25rem 0 .5rem;opacity:.8">${count} matching document${count===1?'':'s'}</li>`;
+  const items = list.map(it => {
+    if (!it || !it.url) return '';
+    const safeTitle = it.title && it.title.trim() ? it.title : (it.url || 'Untitled');
+    const title = highlight(safeTitle, q);
+    const badge = esc(it.section || (it.kind==='post'?'Post':'Page'));
+    const date  = it.date ? ` — ${esc(it.date)}` : '';
+    const snip  = makeSnippet(it.content || '', q, 160);
+    return `
+      <li style="margin:.6rem 0;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.08)">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
+          <span style="font-size:.75rem;padding:.15rem .45rem;border:1px solid rgba(255,255,255,.35);border-radius:999px;opacity:.85">${badge}</span>
+          <a class="sr" href="${it.url}" style="color:#fff;text-decoration:none;font-weight:700">${title}</a>
+          <span style="opacity:.7;font-size:.9rem">${date}</span>
+        </div>
+        <div style="opacity:.85;font-size:.95rem">${snip}</div>
+      </li>`;
+  }).join('');
+  results.innerHTML = header + items;
+}
   // load index once
   fetch(INDEX_URL)
     .then(r => r.json())
