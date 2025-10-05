@@ -28,12 +28,13 @@ section: Science in Action
         <a href="/" class="logo">Mikayla Newbrey</a>
       </header>
 
-      <nav id="nav">
-        <ul class="links">
-          <li><a href="/">Field Notes & Research</a></li>
-          <li><a href="/about/">About</a></li>
-          <li class="active"><a href="/science/">Science In Action</a></li>
-        </ul>
+     <nav id="nav">
+    <ul class="links">
+      <li><a href="{{ '/' | relative_url }}">Field Notes & Research</a></li>
+      <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+      <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
+      <li class="active"><a href="{{ '/pastry-lab/' | relative_url }}">Pastry Lab</a></li>
+    </ul>
 
       <!-- Right: Search -->
         <div style="display:flex;align-items:center;gap:1rem;">
