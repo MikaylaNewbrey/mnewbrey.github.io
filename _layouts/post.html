@@ -161,19 +161,19 @@
       });
 
       SimpleJekyllSearch({
-        searchInput: input,
-        resultsContainer: results,
-        json: '{{ "/search.json" | relative_url }}',
-        searchResultTemplate:
-          '<li style="margin:.6rem 0;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.08)">' +
-            '<a href="{url}" style="color:#fff;text-decoration:none;font-weight:600">{title}</a>' +
-            ' <span style="opacity:.7;font-size:.9rem">— {date}</span>' +
-          '</li>',
-        noResultsText: '<li style="opacity:.7">No results.</li>',
-        limit: 30,
-        fuzzy: true
-      });
-    })();
+  searchInput: input,
+  resultsContainer: results,
+  json: '{{ "/search.json" | relative_url }}',
+  searchResultTemplate:
+    '<li style="margin:.6rem 0;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.08)">' +
+      '<a class="sr" href="{url}" style="color:#fff;text-decoration:none;font-weight:600">{title}</a>' +
+      ' <span style="opacity:.7;font-size:.9rem">— {date}</span>' +
+      '<div style="opacity:.8;margin-top:.25rem;font-size:.95rem">{tags}</div>' +
+    '</li>',
+  noResultsText: '<li style="opacity:.7">No results.</li>',
+  limit: 30,
+  fuzzy: true
+});
     </script>
   </body>
 </html>
