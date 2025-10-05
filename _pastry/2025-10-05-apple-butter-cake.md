@@ -12,9 +12,9 @@ Designed like a lab protocol, formatted like a NYT recipe.
 
 ---
 
-<div style="display: flex; gap: 3rem; align-items: flex-start;">
+<div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;" markdown="1">
 
-<div style="flex: 1;">
+<div markdown="1">
 
 ### **Ingredients**
 
@@ -38,7 +38,7 @@ Designed like a lab protocol, formatted like a NYT recipe.
 
 </div>
 
-<div style="flex: 2;">
+<div markdown="1">
 
 ### **Method**
 
@@ -48,9 +48,10 @@ Designed like a lab protocol, formatted like a NYT recipe.
 4. Gradually fold dry mixture into wet until just combined—avoid overmixing.  
 5. Fold in **walnuts** or **diced apple** if desired.  
 6. Pour into loaf pan and bake for **55–65 minutes**, or until a toothpick tests clean.  
-7. Cool 15 minutes before removing. Serve warm or room temperature.
+7. Cool 15 minutes before removing. Serve warm or room temperature.  
 
 </div>
+
 </div>
 
 ---
