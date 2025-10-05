@@ -21,17 +21,17 @@ Designed like a lab protocol, formatted like a NYT recipe.
 
 **Wet Ingredients**  
 - 1 cup apple butter
-- &frac12 cup pumpkin purée 
+- 1/2 cup pumpkin purée 
 - 10 Tbsp butter, browned  
 - 2 eggs
-- &frac13 cup labneh or Greek yogurt 
+- 1/3 cup labneh or Greek yogurt 
 - 1 tsp vanilla extract  
 
 **Dry Ingredients**  
 - 255 grams All-purpose flour   
-- 1&frac12 tsp baking soda  
-- 1&frac12 tsp salt  
-- 2&frac12 tsp pumpkin pie spice 
+- 1 1/2 tsp baking soda  
+- 1 1/2 tsp salt  
+- 2 1/2 tsp pumpkin pie spice 
 
 
 </div>
