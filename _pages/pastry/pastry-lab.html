@@ -46,54 +46,30 @@ description: Experiments in butter ratios, temperature control, and edible chemi
   <!-- Main -->
   <div id="main">
 
-    <!-- Featured Post (optional) -->
-    {% assign featured = site.pastry | where: "featured", true | sort: "date" | last %}
-    {% if featured %}
-    <article class="post featured">
-      <header class="major">
-        <span class="date">{{ featured.date | date: "%b %-d, %Y" }}</span>
-        <h2><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
-        <p>{{ featured.excerpt | default: featured.content | strip_html | truncate: 240 }}</p>
-      </header>
-      {% if featured.image %}
-        <a href="{{ featured.url | relative_url }}" class="image main">
-          <img src="{{ featured.image | relative_url }}" alt="">
-        </a>
-      {% endif %}
-      <ul class="actions special">
-        <li><a href="{{ featured.url | relative_url }}" class="button large">Full Story</a></li>
-      </ul>
-    </article>
-    {% endif %}
+<!-- Posts grid -->
+        <section class="posts">
+          {% assign all_posts = site.posts | sort: 'date' | reverse %}
+          {% for post in all_posts %}
+          <article>
+            <header>
+              <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
+              <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            </header>
+            {% if post.image %}
+            <a href="{{ post.url | relative_url }}" class="image fit">
+              <img src="{{ post.image | relative_url }}" alt="">
+            </a>
+            {% endif %}
+            <p>{{ post.excerpt | strip_html | truncate: 180 }}</p>
+            <ul class="actions special">
+              <li><a href="{{ post.url | relative_url }}" class="button">Full Story</a></li>
+            </ul>
+          </article>
+          {% endfor %}
+        </section>
 
-    <!-- Posts -->
-    <section class="posts">
-      {% assign pastry_sorted = site.pastry | sort: "date" | reverse %}
-      {% for post in pastry_sorted %}
-        {% if featured and post.url == featured.url %}
-          {% continue %}
-        {% endif %}
-        <article>
-          <header>
-            <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
-            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-          </header>
+      </div>
 
-          {% if post.image %}
-          <a href="{{ post.url | relative_url }}" class="image fit">
-            <img src="{{ post.image | relative_url }}" alt="">
-          </a>
-          {% endif %}
-
-          <p>{{ post.excerpt | default: post.content | strip_html | truncate: 180 }}</p>
-          <ul class="actions special">
-            <li><a href="{{ post.url | relative_url }}" class="button">Full Story</a></li>
-          </ul>
-        </article>
-      {% endfor %}
-    </section>
-
-  </div>
 
   <!-- Footer (reuse your footer) -->
   <footer id="footer">
