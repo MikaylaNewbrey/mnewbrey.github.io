@@ -7,9 +7,12 @@ permalink: /search.json
 {% assign all = site.pages | concat: site.posts %}
 {% for p in all %}
   {% unless p.exclude_from_search %}
+    {% assign title = p.title | to_s | strip %}
+    {% assign url = p.url | to_s | strip %}
+    {% if title != "" and url != "" %}
     {
-      "title": {{ p.title | jsonify }},
-      "url": {{ p.url | relative_url | jsonify }},
+      "title": {{ title | jsonify }},
+      "url": {{ url | relative_url | jsonify }},
       "date": {{ p.date | date: "%Y-%m-%d" | jsonify }},
       "tags": {{ p.tags | join: " " | jsonify }},
       "content": {{ p.content | strip_html | normalize_whitespace | truncate: 4000 | jsonify }},
@@ -22,10 +25,13 @@ permalink: /search.json
                    "About"
                  {% elsif p.url contains '/science/' %}
                    "Science"
+                 {% elsif p.url == '/' %}
+                   "Field Notes & Research"
                  {% else %}
                    "Page"
                  {% endif %}
     }{% unless forloop.last %},{% endunless %}
+    {% endif %}
   {% endunless %}
 {% endfor %}
 ]
