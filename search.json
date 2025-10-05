@@ -4,12 +4,13 @@ permalink: /search.json
 ---
 [
 {% for post in site.posts %}
+  {% assign tags_str = post.tags | join: ' ' %}
   {
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | relative_url | jsonify }},
     "date": "{{ post.date | date: '%Y-%m-%d' }}",
-    "tags": {{ post.tags | jsonify }},
-    "content": {{ post.content | strip_html | normalize_whitespace | jsonify }}
+    "tags": {{ tags_str | jsonify }},  <!-- now a flat string -->
+    "content": {{ post.content | strip_html | normalize_whitespace | truncate: 1400 | jsonify }}
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]
