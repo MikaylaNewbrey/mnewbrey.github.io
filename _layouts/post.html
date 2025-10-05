@@ -134,56 +134,57 @@
     <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
-    <!-- Simple-Jekyll-Search + overlay logic -->
-    <script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script>
-    <script>
-    (function() {
-      const overlay = document.getElementById('search-overlay');
-      const openBtn = document.getElementById('open-search');
-      const closeBtn = document.getElementById('close-search');
-      const input = document.getElementById('search-input');
-      const results = document.getElementById('results-container');
+   <!-- Simple-Jekyll-Search + overlay logic -->
+<script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script>
+<script>
+(function () {
+  const overlay = document.getElementById('search-overlay');
+  const openBtn = document.getElementById('open-search');
+  const closeBtn = document.getElementById('close-search');
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('results-container');
 
-      function openSearch() {
-        overlay.style.display = 'block';
-        overlay.setAttribute('aria-hidden','false');
-        setTimeout(() => input && input.focus(), 50);
-      }
-      function closeSearch() {
-        overlay.style.display = 'none';
-        overlay.setAttribute('aria-hidden','true');
-        input.value = '';
-        results.innerHTML = '';
-      }
+  function openSearch() {
+    overlay.style.display = 'block';
+    overlay.setAttribute('aria-hidden','false');
+    setTimeout(() => input && input.focus(), 50);
+  }
+  function closeSearch() {
+    overlay.style.display = 'none';
+    overlay.setAttribute('aria-hidden','true');
+    input.value = '';
+    results.innerHTML = '';
+  }
 
-      // Expose for inline onclick fallback
-      window.__openSearch = openSearch;
+  // Fallback for inline onclick
+  window.__openSearch = openSearch;
 
-      // Primary listeners
-      openBtn && openBtn.addEventListener('click', openSearch);
-      closeBtn && closeBtn.addEventListener('click', closeSearch);
-      overlay && overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSearch(); });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeSearch();
-        if (e.key === '/' && !e.metaKey && !e.ctrlKey) { e.preventDefault(); openSearch(); }
-      });
+  // Listeners
+  openBtn && openBtn.addEventListener('click', openSearch);
+  closeBtn && closeBtn.addEventListener('click', closeSearch);
+  overlay && overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSearch(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSearch();
+    if (e.key === '/' && !e.metaKey && !e.ctrlKey) { e.preventDefault(); openSearch(); }
+  });
 
-      // Search
-      SimpleJekyllSearch({
-        searchInput: input,
-        resultsContainer: results,
-        json: '{{ "/search.json?v=" | append: site.time | date: "%s" | relative_url }}',
-        searchResultTemplate:
-          '<li style="margin:.6rem 0;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.08)">' +
-            '<a class="sr" href="{url}" style="color:#fff;text-decoration:none;font-weight:600">{title}</a>' +
-            ' <span style="opacity:.7;font-size:.9rem">— {date}</span>' +
-            '<div style="opacity:.8;margin-top:.25rem;font-size:.95rem">{tags}</div>' +
-          '</li>',
-        noResultsText: '<li style="opacity:.7">No results.</li>',
-        limit: 30,
-        fuzzy: true
-      });
-    })();
-    </script>
-  </body>
+  // Search
+  SimpleJekyllSearch({
+    searchInput: input,
+    resultsContainer: results,
+    json: '{{ "/search.json?v=" | append: site.time | date: "%s" | relative_url }}', // cache-bust
+    searchableFields: ['title', 'tags', 'content'],
+    searchResultTemplate:
+      '<li class="sr-item">' +
+        '<a class="sr" href="{url}">{title}</a>' +
+        ' <span class="sr-date">— {date}</span>' +
+        '<div class="sr-tags">{tags}</div>' +
+      '</li>',
+    noResultsText: '<li class="sr-none">No results.</li>',
+    limit: 50,
+    fuzzy: true
+  });
+})();
+</script>
+</body>
 </html>
