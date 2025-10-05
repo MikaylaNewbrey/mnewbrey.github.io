@@ -40,49 +40,81 @@
     if (e.key==='/' && !e.metaKey && !e.ctrlKey){ e.preventDefault(); openSearch(); }
   });
 
-  let INDEX = [];
-  let ready = false;
-  let lastQuery = '';
-  const INDEX_URL = location.origin + '{{ "/search.json" | relative_url }}' + '?v={{ site.time | date: "%s" }}';
+  const INDEX_URL = '{{ "/search.json?v=" | append: site.time | date: "%s" | relative_url }}';
+  let INDEX = [], ready = false, lastQuery = '';
 
-  function render(items){
-    if (!items.length){ results.innerHTML = '<li style="opacity:.7">No results.</li>'; return; }
-    results.innerHTML = items.map(it => (
-      `<li style="margin:.6rem 0;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.08)">
-         <a class="sr" href="${it.url}" style="color:#fff;text-decoration:none;font-weight:600">${it.title}</a>
-         <span style="opacity:.7;font-size:.9rem"> — ${it.date||''}</span>
-         ${it.tags ? `<div style="opacity:.8;margin-top:.25rem;font-size:.95rem">${it.tags}</div>` : ''}
-       </li>`
-    )).join('');
+  // --- helpers ---
+  const esc = s => (s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  function highlight(hay, q){
+    if(!q) return esc(hay);
+    const re = new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+    return esc(hay).replace(re,'<mark>$1</mark>');
+  }
+  function makeSnippet(text, q, len=160){
+    const t = (text||'').trim();
+    if(!q) return esc(t.slice(0,len)) + (t.length>len?'…':'');
+    const i = t.toLowerCase().indexOf(q.toLowerCase());
+    if(i<0) return esc(t.slice(0,len)) + (t.length>len?'…':'');
+    const start = Math.max(0, i - Math.floor(len/3));
+    const clip  = t.slice(start, start+len);
+    return (start>0?'…':'') + highlight(clip, q) + (start+len<t.length?'…':'');
+  }
+  function scoreItem(it, q){
+    const s = q.toLowerCase();
+    let score = 0;
+    if ((it.title||'').toLowerCase().includes(s)) score += 5;
+    if ((it.tags||'').toLowerCase().includes(s))  score += 3;
+    if ((it.content||'').toLowerCase().includes(s)) score += 1;
+    return score;
   }
 
-  function runSearch(q){
-    const s = q.trim().toLowerCase();
-    if (!s){ results.innerHTML=''; return; }
-    const out = INDEX.filter(it => {
-      const title = (it.title||'').toLowerCase();
-      const tags  = (it.tags||'').toLowerCase();
-      const cont  = (it.content||'').toLowerCase();
-      return title.includes(s) || tags.includes(s) || cont.includes(s);
-    }).slice(0,50);
-    render(out);
+  function render(list, q){
+    if (!q) { results.innerHTML = ''; return; }
+    const count = list.length;
+    const header = `<li style="list-style:none;margin:.25rem 0 .5rem;opacity:.8">${count} matching document${count===1?'':'s'}</li>`;
+    const items = list.map(it => {
+      const title = highlight(it.title || 'Untitled', q);
+      const badge = esc(it.section || (it.kind==='post'?'Post':'Page'));
+      const date  = it.date ? ` — ${esc(it.date)}` : '';
+      const snip  = makeSnippet(it.content || '', q, 160);
+      return `
+        <li style="margin:.6rem 0;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.08)">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
+            <span style="font-size:.75rem;padding:.15rem .45rem;border:1px solid rgba(255,255,255,.35);border-radius:999px;opacity:.85">${badge}</span>
+            <a class="sr" href="${it.url}" style="color:#fff;text-decoration:none;font-weight:700">${title}</a>
+            <span style="opacity:.7;font-size:.9rem">${date}</span>
+          </div>
+          <div style="opacity:.85;font-size:.95rem">${snip}</div>
+        </li>`;
+    }).join('');
+    results.innerHTML = header + items;
   }
 
-  results.innerHTML = '';
-  fetch(INDEX_URL, { credentials:'same-origin' })
-    .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-    .then(data => { INDEX = data || []; ready = true; if (lastQuery) runSearch(lastQuery); })
-    .catch(err => { console.error(err); results.innerHTML = '<li style="opacity:.7">Could not load index.</li>'; });
+  // load index once
+  fetch(INDEX_URL)
+    .then(r => r.json())
+    .then(data => { INDEX = data || []; ready = true; if (lastQuery) run(lastQuery); })
+    .catch(() => { results.innerHTML = '<li style="opacity:.7">Could not load index.</li>'; });
 
+  // search runner (weighted + partial)
+  function run(q){
+    const s = (q||'').trim();
+    if (!s) { results.innerHTML=''; return; }
+    const ranked = INDEX
+      .map(it => ({ it, sc: scoreItem(it, s) }))
+      .filter(x => x.sc > 0)
+      .sort((a,b) => b.sc - a.sc)
+      .slice(0,50)
+      .map(x => x.it);
+    render(ranked, s);
+  }
+
+  // debounce input
   let t;
   input.addEventListener('input', e => {
-    const val = e.target.value;
-    lastQuery = val;
+    lastQuery = e.target.value;
     clearTimeout(t);
-    t = setTimeout(() => {
-      if (!ready) { results.innerHTML = '<li style="opacity:.7">Loading index…</li>'; return; }
-      runSearch(val);
-    }, 120);
+    t = setTimeout(() => { if(!ready){ results.innerHTML='<li style="opacity:.7">Loading index…</li>'; return; } run(lastQuery); }, 120);
   });
 })();
 </script>
