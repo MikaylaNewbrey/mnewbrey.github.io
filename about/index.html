@@ -1,56 +1,39 @@
 ---
-layout: page
 title: About
 permalink: /about/
+layout: none   # keep the raw HTML; just turn Liquid processing on
 ---
 
 <!DOCTYPE html>
 <html>
   <head>
+    <title>About – Mikayla Newbrey</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>{{ page.title }} – {{ site.title }}</title>
-
-    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | truncate: 160 }}">
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}"></noscript>
-
-    <style>
-      /* keep nav consistent site-wide */
-      #nav{display:flex;align-items:center;justify-content:space-between}
-      #nav .links{display:flex;gap:2rem;margin:0;padding:0}
-      #nav .links li{list-style:none}
-
-      /* search icon normalization */
-      #nav #open-search,#nav .nav-icon,#header #open-search,#header .nav-icon{
-        all:unset;appearance:none;background:transparent!important;border:none!important;
-        box-shadow:none!important;outline:none!important;display:inline-flex;align-items:center;
-        justify-content:center;padding:.4rem;cursor:pointer;line-height:1;-webkit-tap-highlight-color:transparent
-      }
-      #nav .nav-icon svg,#header .nav-icon svg{width:22px;height:22px;fill:none;stroke:#fff;color:#fff;opacity:.95;transition:stroke .15s,color .15s,opacity .15s}
-      #nav .nav-icon:hover svg,#header .nav-icon:hover svg,#nav .nav-icon:focus-visible svg,#header .nav-icon:focus-visible svg{opacity:1;stroke:#3aa3ff;color:#3aa3ff}
-    </style>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
   </head>
   <body class="is-preload">
     <div id="wrapper">
 
       <!-- Header -->
       <header id="header">
-        <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+        <a href="/" class="logo">Mikayla Newbrey</a>
       </header>
 
-      <!-- Nav (same as posts) -->
+      <!-- Nav -->
       <nav id="nav">
         <ul class="links">
-          <li><a href="{{ '/' | relative_url }}">Field Notes & Research</a></li>
-          <li class="active"><a href="{{ '/about/' | relative_url }}">About</a></li>
-          <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
+          <li><a href="/">Field Notes & Research</a></li>
+          <li class="active"><a href="/about/">About</a></li>
+          <li><a href="/science/">Science In Action</a></li>
         </ul>
-        <div style="display:flex;align-items:center;gap:1rem">
-          <a href="{{ '/tags/' | relative_url }}" style="text-decoration:none;">Tags</a>
+
+        <!-- Right: Search -->
+        <div style="display:flex;align-items:center;gap:1rem;">
           <button id="open-search" type="button" aria-label="Open search"
                   class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -63,30 +46,69 @@ permalink: /about/
       <div id="main">
         <section class="post">
           <header class="major">
-            <h1>{{ page.title }}</h1>
-            {% if page.subtitle %}<p>{{ page.subtitle }}</p>{% endif %}
+            <span class="date">September 29, 2029</span>
+            <h1>About<br />Me</h1>
+            <p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam
+            facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor
+            amet nullam sed etiam veroeros.</p>
           </header>
 
-          {{ content }}
+          <div class="image main">
+            <img src="/images/pic01.jpg" alt="" />
+          </div>
+
+          <p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet...</p>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis... </p>
         </section>
       </div>
 
       <!-- Footer -->
-      <footer id="footer" style="text-align:center;padding:2rem 0">
-        <a class="button" href="{{ '/' | relative_url }}">← Back to Home</a>
+      <footer id="footer">
+        <section class="split contact">
+          <section class="alt">
+            <h3>Affiliation</h3>
+            <p><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">University of Massachusetts Amherst, OEB Program</a></p>
+          </section>
+          <section>
+            <h3>ORCiD</h3>
+            <p><a href="https://orcid.org/0009-0008-1202-4962" target="_blank">0009-0008-1202-4962</a></p>
+          </section>
+          <section>
+            <h3>Email</h3>
+            <p><a href="#">info@untitled.tld</a></p>
+          </section>
+          <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+              <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+              <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+              <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+          </section>
+        </section>
       </footer>
+
+      <!-- Copyright -->
+      <div id="copyright">
+        <ul>
+          <li>&copy; Mikayla Newbrey</li>
+          <li>All Views Expressed Are My Own</li>
+        </ul>
+      </div>
+
     </div>
 
-    <!-- Theme scripts -->
-    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.scrollex.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
 
     {% include search.html %}
   </body>
 </html>
-
