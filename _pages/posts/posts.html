@@ -1,0 +1,121 @@
+---
+title: All Field Notes & Research
+permalink: /posts/
+layout: none
+---
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{{ page.title }} – {{ site.title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+  </head>
+  <body class="is-preload">
+    <div id="wrapper" class="fade-in">
+
+      <!-- Header -->
+      <header id="header">
+        <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+      </header>
+
+      <!-- Nav -->
+      <nav id="nav">
+        <ul class="links">
+          <li><a href="{{ '/' | relative_url }}">Field Notes & Research</a></li>
+          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+          <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
+          <li><a href="{{ '/pastry-lab/' | relative_url }}">Pastry Lab</a></li>
+        </ul>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <button id="open-search" type="button" aria-label="Open search"
+                  class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Main -->
+      <div id="main">
+
+        <header class="major" style="text-align:center; margin-bottom:1rem;">
+          <h1>{{ page.title }}</h1>
+          <p>Browse the full archive of posts.</p>
+        </header>
+
+        <!-- Posts grid -->
+        <section class="posts">
+          {% assign all_posts = site.posts | sort: 'date' | reverse %}
+          {% for post in all_posts %}
+          <article>
+            <header>
+              <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
+              <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            </header>
+            {% if post.image %}
+            <a href="{{ post.url | relative_url }}" class="image fit">
+              <img src="{{ post.image | relative_url }}" alt="">
+            </a>
+            {% endif %}
+            <p>{{ post.excerpt | strip_html | truncate: 180 }}</p>
+            <ul class="actions special">
+              <li><a href="{{ post.url | relative_url }}" class="button">Full Story</a></li>
+            </ul>
+          </article>
+          {% endfor %}
+        </section>
+
+      </div>
+
+      <!-- Footer  -->
+      <footer id="footer">
+        <section class="split contact">
+          <section class="alt">
+            <h3>Affiliation</h3>
+            <p><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">University of Massachusetts Amherst, OEB Program</a></p>
+          </section>
+          <section>
+            <h3>ORCiD</h3>
+            <p><a href="https://orcid.org/0009-0008-1202-4962" target="_blank">0009-0008-1202-4962</a></p>
+          </section>
+          <section>
+            <h3>Email</h3>
+            <p><a href="#">info@untitled.tld</a></p>
+          </section>
+          <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+              <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+              <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+              <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+          </section>
+        </section>
+      </footer>
+
+      <div id="copyright">
+        <ul>
+          <li>&copy; Mikayla Newbrey</li>
+          <li>All Views Expressed Are My Own</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.scrollex.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+    {% include search.html %}
+  </body>
+</html>
