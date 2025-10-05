@@ -136,61 +136,82 @@
 
    <!-- Minimal, dependency-free search -->
     <script>
-    (function () {
-      const overlay = document.getElementById('search-overlay');
-      const openBtn  = document.getElementById('open-search');
-      const closeBtn = document.getElementById('close-search');
-      const input    = document.getElementById('search-input');
-      const results  = document.getElementById('results-container');
+(function () {
+  const overlay = document.getElementById('search-overlay');
+  const openBtn  = document.getElementById('open-search');
+  const closeBtn = document.getElementById('close-search');
+  const input    = document.getElementById('search-input');
+  const results  = document.getElementById('results-container');
 
-      function openSearch(){ overlay.style.display='block'; overlay.setAttribute('aria-hidden','false'); setTimeout(()=>input.focus(),50); }
-      function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); input.value=''; results.innerHTML=''; }
-      window.__openSearch = openSearch;
-      openBtn && openBtn.addEventListener('click', openSearch);
-      closeBtn && closeBtn.addEventListener('click', closeSearch);
-      overlay && overlay.addEventListener('click', e => { if (e.target===overlay) closeSearch(); });
-      document.addEventListener('keydown', e => {
-        if (e.key==='Escape') closeSearch();
-        if (e.key==='/' && !e.metaKey && !e.ctrlKey){ e.preventDefault(); openSearch(); }
-      });
+  // Open/close
+  function openSearch(){ overlay.style.display='block'; overlay.setAttribute('aria-hidden','false'); setTimeout(()=>input.focus(),50); }
+  function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); input.value=''; results.innerHTML=''; }
+  window.__openSearch = openSearch;
+  openBtn && openBtn.addEventListener('click', openSearch);
+  closeBtn && closeBtn.addEventListener('click', closeSearch);
+  overlay && overlay.addEventListener('click', e => { if (e.target===overlay) closeSearch(); });
+  document.addEventListener('keydown', e => {
+    if (e.key==='Escape') closeSearch();
+    if (e.key==='/' && !e.metaKey && !e.ctrlKey){ e.preventDefault(); openSearch(); }
+  });
 
-      // fetch the index once (cache-busted per build)
-      let INDEX = [];
-      const INDEX_URL = '{{ "/search.json?v=" | append: site.time | date: "%s" | relative_url }}';
-      fetch(INDEX_URL).then(r => r.json()).then(data => { INDEX = data || []; }).catch(console.error);
+  // Fetch index once (cache-busted), then search if user already typed
+  let INDEX = [];
+  let ready = false;
+  let lastQuery = '';
+  const INDEX_URL = '{{ "/search.json?v=" | append: site.time | date: "%s" | relative_url }}';
 
-      function render(items){
-        if (!items.length){ results.innerHTML = '<li style="opacity:.7">No results.</li>'; return; }
-        results.innerHTML = items.map(it => (
-          `<li style="margin:.6rem 0;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.08)">
-             <a class="sr" href="${it.url}" style="color:#fff;text-decoration:none;font-weight:600">${it.title}</a>
-             <span style="opacity:.7;font-size:.9rem"> — ${it.date||''}</span>
-             ${it.tags ? `<div style="opacity:.8;margin-top:.25rem;font-size:.95rem">${it.tags}</div>` : ''}
-           </li>`
-        )).join('');
+  // simple renderer
+  function render(items){
+    if (!items.length){ results.innerHTML = '<li style="opacity:.7">No results.</li>'; return; }
+    results.innerHTML = items.map(it => (
+      `<li style="margin:.6rem 0;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.08)">
+         <a class="sr" href="${it.url}" style="color:#fff;text-decoration:none;font-weight:600">${it.title}</a>
+         <span style="opacity:.7;font-size:.9rem"> — ${it.date||''}</span>
+         ${it.tags ? `<div style="opacity:.8;margin-top:.25rem;font-size:.95rem">${it.tags}</div>` : ''}
+       </li>`
+    )).join('');
+  }
+
+  // case-insensitive, partial match
+  function runSearch(q){
+    const s = q.trim().toLowerCase();
+    if (!s){ results.innerHTML=''; return; }
+    const out = INDEX.filter(it => {
+      const title = (it.title||'').toLowerCase();
+      const tags  = (it.tags||'').toLowerCase();
+      const cont  = (it.content||'').toLowerCase();
+      return title.includes(s) || tags.includes(s) || cont.includes(s);
+    }).slice(0,50);
+    render(out);
+  }
+
+  // load index
+  results.innerHTML = ''; // start blank
+  fetch(INDEX_URL)
+    .then(r => r.json())
+    .then(data => {
+      INDEX = data || [];
+      ready = true;
+      if (lastQuery) runSearch(lastQuery); // user typed before ready
+    })
+    .catch(err => { console.error(err); results.innerHTML = '<li style="opacity:.7">Could not load index.</li>'; });
+
+  // live input with debounce; show loading state until ready
+  let t;
+  input.addEventListener('input', e => {
+    const val = e.target.value;
+    lastQuery = val;
+    clearTimeout(t);
+    t = setTimeout(() => {
+      if (!ready) {
+        results.innerHTML = '<li style="opacity:.7">Loading index…</li>';
+        return;
       }
-
-      // case-insensitive, partial substring search on title/tags/content
-      function search(q){
-        const s = q.trim().toLowerCase();
-        if (!s){ results.innerHTML=''; return; }
-        const out = INDEX.filter(it => {
-          const title = (it.title||'').toLowerCase();
-          const tags  = (it.tags||'').toLowerCase();
-          const cont  = (it.content||'').toLowerCase();
-          return title.includes(s) || tags.includes(s) || cont.includes(s);
-        }).slice(0, 50);
-        render(out);
-      }
-
-      // debounce input
-      let t; 
-      input.addEventListener('input', e => {
-        clearTimeout(t);
-        const val = e.target.value;
-        t = setTimeout(() => search(val), 120);
-      });
-    })();
-    </script>
+      runSearch(val);
+    }, 120);
+  });
+})();
+</script>
   </body>
 </html>
