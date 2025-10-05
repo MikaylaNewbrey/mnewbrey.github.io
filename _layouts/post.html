@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}"></noscript>
 
-    <!-- Minimal layout-specific styles -->
     <style>
       .post-meta{opacity:.75;margin:.25rem 0 1rem}
       .post-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.25rem}
@@ -20,29 +19,41 @@
       .post-tags a:hover{border-color:#aaa}
       .post-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:2rem}
       .post-nav a{white-space:nowrap}
+      /* icon visibility on dark header */
+      #nav button#open-search svg { color:#fff; stroke:#fff; opacity:.9; }
+      #nav button#open-search:hover svg { opacity:1; }
     </style>
   </head>
   <body class="is-preload">
     <div id="wrapper">
-      <!-- Header -->
-<header id="header" style="display:flex;align-items:center;gap:1rem">
-  <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
 
-  <nav style="margin-left:auto;display:flex;align-items:center;gap:1rem">
-    <a href="{{ '/tags/' | relative_url }}">Tags</a>
+      <!-- Header (logo only) -->
+      <header id="header">
+        <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+      </header>
 
-    <!-- Search button -->
-    <button id="open-search" aria-label="Open search"
-            style="background:none;border:0;cursor:pointer;padding:.25rem">
-      <!-- SVG magnifying glass -->
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
-        <line x1="16.65" y1="16.65" x2="21" y2="21"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </nav>
-</header>
+      <!-- Nav -->
+      <nav id="nav" style="display:flex;align-items:center;justify-content:space-between;">
+        <ul class="links" style="margin:0;display:flex;align-items:center;gap:2rem;">
+          <li class="active"><a href="/">Field Notes & Research</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/science/">Science In Action</a></li>
+        </ul>
+
+        <!-- Right-aligned: Tags + Search icon -->
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <a href="{{ '/tags/' | relative_url }}" style="text-decoration:none;">Tags</a>
+          <button id="open-search" aria-label="Open search"
+                  style="background:none;border:0;cursor:pointer;padding:.25rem;color:inherit;display:flex;align-items:center;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
       <!-- Main -->
       <div id="main">
         <section class="post">
@@ -68,25 +79,14 @@
             <span class="image main"><img src="{{ page.image | relative_url }}" alt=""></span>
           {% endif %}
 
-          {%- comment -%}
-            To include a Table of Contents in a specific post:
-            Put these two lines at the very top of that post's Markdown content:
-            * TOC
-            {:toc}
-          {%- endcomment -%}
-
           {{ content }}
 
           <div class="post-nav">
             <div>
-              {% if page.previous %}
-                ← <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
-              {% endif %}
+              {% if page.previous %}← <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>{% endif %}
             </div>
             <div>
-              {% if page.next %}
-                <a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a> →
-              {% endif %}
+              {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a> →{% endif %}
             </div>
           </div>
         </section>
@@ -97,8 +97,8 @@
         <a class="button" href="{{ '/' | relative_url }}">← Back to Home</a>
       </footer>
     </div>
-    
-<!-- ===== FULL-SCREEN SEARCH OVERLAY ===== -->
+
+    <!-- ===== FULL-SCREEN SEARCH OVERLAY ===== -->
     <div id="search-overlay" aria-hidden="true" role="dialog" aria-label="Search"
          style="position:fixed;inset:0;display:none;z-index:9999;background:rgba(10,12,16,.92)">
       <div style="max-width:980px;margin:12vh auto 0;padding:0 1.25rem;color:#111">
@@ -120,7 +120,8 @@
         <ul id="results-container" style="list-style:none;margin:1.5rem 0 0;padding:0;color:#e9eef5"></ul>
       </div>
     </div>
-    <!-- Scripts -->
+
+    <!-- Theme scripts -->
     <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
@@ -128,9 +129,8 @@
     <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-  </body>
-</html>
-<!-- Simple-Jekyll-Search + overlay logic -->
+
+    <!-- Simple-Jekyll-Search + overlay logic -->
     <script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script>
     <script>
     (function() {
@@ -154,14 +154,10 @@
 
       openBtn && openBtn.addEventListener('click', openSearch);
       closeBtn && closeBtn.addEventListener('click', closeSearch);
-      overlay && overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeSearch();
-      });
+      overlay && overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSearch(); });
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeSearch();
-        if (e.key === '/' && !e.metaKey && !e.ctrlKey) {
-          e.preventDefault(); openSearch();
-        }
+        if (e.key === '/' && !e.metaKey && !e.ctrlKey) { e.preventDefault(); openSearch(); }
       });
 
       SimpleJekyllSearch({
