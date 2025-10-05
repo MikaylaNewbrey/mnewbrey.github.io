@@ -2,6 +2,7 @@
 title: "Apple Butter Bread: A Study in Disguised Cake"
 date: 2025-10-05
 image: /images/baking/apple-butter-bread.jpg
+permalink: /_pastry/2025-10-05-apple-butter-cake.md/
 tags: [quick-bread, recipe, fall-baking]
 featured: true
 excerpt: "Testing hydration, fat content, and bake time in an apple butter loaf that behaves like bread but eats like cake."
