@@ -8,9 +8,7 @@ featured: true
 excerpt: "Testing hydration, fat content, and bake time in an apple butter loaf that behaves like bread but eats like cake."
 ---
 
-This loaf is unapologetically autumnal. I stopped by **Scott Farm** this weekend and couldn’t resist their apple butter. Left with a few jars and, naturally, too many apples. This recipe doesn’t call for fresh ones (they’re destined for a Gâteau Invisible), but if you’re that kind of person, go ahead and fold some in. It’ll only make your kitchen smell better.  
-
-*Adapted from Molly Baz's Brown Butter & Labneh Banana ~~Bread~~ Cake — reworked with apple butter instead of bananas.*
+This loaf is unapologetically autumnal. I stopped by Scott Farm this weekend and couldn’t resist their apple butter. Left with a few jars and, naturally, too many apples. This recipe doesn’t call for fresh ones (they’re destined for a Gâteau Invisible), but if you’re that kind of person, go ahead and fold some in. It’ll only make your kitchen smell better.  
 
 ---
 
@@ -56,9 +54,9 @@ This loaf is unapologetically autumnal. I stopped by **Scott Farm** this weekend
 ---
 
 ### **Notes**
-- Next time I mimght try to top this off with a streusel topping
+- Next time I might try to top this off with a streusel topping
 
 ---
 
 ### **Source**
-Developed by [Your Name] — structured as a culinary experiment.
+*Adapted from Molly Baz's Brown Butter & Labneh Banana ~~Bread~~ Cake — reworked with apple butter instead of bananas.*
