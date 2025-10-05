@@ -8,8 +8,9 @@ featured: true
 excerpt: "Testing hydration, fat content, and bake time in an apple butter loaf that behaves like bread but eats like cake."
 ---
 
-Moist, spiced, and unapologetically autumnal—this loaf walks the line between quick bread and dessert.  
-Designed like a lab protocol, formatted like a NYT recipe.
+This loaf is unapologetically autumnal. I stopped by **Scott Farm** this weekend and couldn’t resist their apple butter. Left with a few jars and, naturally, too many apples. This recipe doesn’t call for fresh ones (they’re destined for a Gâteau Invisible), but if you’re that kind of person, go ahead and fold some in. It’ll only make your kitchen smell better.  
+
+*Adapted from Molly Baz's Brown Butter & Labneh Banana ~~Bread~~ Cake — reworked with apple butter instead of bananas.*
 
 ---
 
@@ -20,19 +21,19 @@ Designed like a lab protocol, formatted like a NYT recipe.
 ### **Ingredients**
 
 **Wet Ingredients**  
-- 1 cup apple butter
-- 1/2 cup pumpkin purée 
+- 1 cup apple butter  
+- ½ cup pumpkin purée  
 - 10 Tbsp butter, browned  
-- 2 eggs
-- 1/3 cup labneh or Greek yogurt 
+- 1 cup light brown sugar  
+- 2 eggs  
+- ⅓ cup labneh or Greek yogurt  
 - 1 tsp vanilla extract  
 
 **Dry Ingredients**  
-- 255 grams All-purpose flour   
-- 1 1/2 tsp baking soda  
-- 1 1/2 tsp salt  
-- 2 1/2 tsp pumpkin pie spice 
-
+- 255 g all-purpose flour  
+- 1½ tsp baking soda  
+- 1½ tsp salt  
+- 2½ tsp pumpkin pie spice  
 
 </div>
 
@@ -40,24 +41,22 @@ Designed like a lab protocol, formatted like a NYT recipe.
 
 ### **Method**
 
-1. Preheat oven to **350°F (175°C)**. Grease a 9×5" loaf pan with butter or tallow.  
-2. In a large bowl, whisk **apple butter**, **melted butter**, **eggs**, and **vanilla** until smooth.  
-3. In a separate bowl, combine **flour**, **baking soda**, **salt**, and **spices**.  
-4. Gradually fold dry mixture into wet until just combined—avoid overmixing.  
-5. Fold in **walnuts** or **diced apple** if desired.  
-6. Pour into loaf pan and bake for **55–65 minutes**, or until a toothpick tests clean.  
-7. Cool 15 minutes before removing. Serve warm or room temperature.  
+1. Preheat oven to **350°F (175°C)**.  
+2. Butter a 9×5" loaf pan and line it with parchment, leaving an overhang for easy removal.  
+3. In a small saucepan, **brown the butter** until nutty and fragrant. Let it cool slightly.  
+4. In a large bowl, whisk together **apple butter**, **pumpkin purée**, **brown sugar**, **browned butter**, **eggs**, and **vanilla** until smooth.  
+5. In another bowl, whisk **flour**, **baking soda**, **salt**, and **spices**.  
+6. Fold the dry ingredients into the wet mixture until just combined—don’t overmix.  
+7. Pour the batter into the prepared pan and bake for **about 70 minutes**, or until a tester inserted in the center comes out clean.  
+8. Cool in the pan for 15 minutes, then lift out and let cool completely. Serve warm or at room temperature.  
 
 </div>
-
 </div>
 
 ---
 
 ### **Notes**
-- Brown the butter for deeper flavor.  
-- Works beautifully as muffins (20–22 min bake).  
-- Add a maple-cream glaze if you’re ready to admit it’s cake.
+- Next time I mimght try to top this off with a streusel topping
 
 ---
 
