@@ -73,44 +73,10 @@ section: Field Notes & Research
           </ul>
         </article>
 
-        <!-- Posts -->
-        <section class="posts">
-          {% for post in site.posts %}
-          <article>
-            <header>
-              <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
-              <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-            </header>
-            {% if post.image %}
-            <a href="{{ post.url | relative_url }}" class="image fit">
-              <img src="{{ post.image | relative_url }}" alt="">
-            </a>
-            {% endif %}
-            <p>{{ post.excerpt | strip_html | truncate: 180 }}</p>
-            <ul class="actions special">
-              <li><a href="{{ post.url | relative_url }}" class="button">Full Story</a></li>
-            </ul>
-          </article>
-          {% endfor %}
-        </section>
-
-        <!-- Footer -->
-        <footer>
-          <div class="pagination">
-            <!--<a href="#" class="previous">Prev</a>-->
-            <a href="#" class="page active">1</a>
-            <a href="#" class="page">2</a>
-            <a href="#" class="page">3</a>
-            <span class="extra">&hellip;</span>
-            <a href="#" class="page">8</a>
-            <a href="#" class="page">9</a>
-            <a href="#" class="page">10</a>
-            <a href="#" class="next">Next</a>
-          </div>
-        </footer>
-
-      </div>
-
+        <!-- CTA: Explore my work -->
+<div class="actions special" style="text-align:center; margin: 0 0 2.5rem;">
+  <a href="{{ '/posts/' | relative_url }}" class="button large">Explore my work</a>
+</div>
       <!-- Footer -->
       <footer id="footer">
         <section class="split contact">
@@ -159,6 +125,7 @@ section: Field Notes & Research
   {% include search.html %}
   </body>
 </html>
+
 
 
 
