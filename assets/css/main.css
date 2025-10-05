@@ -4689,38 +4689,55 @@ input, select, textarea {
 
 	}
 
-/* --- Search Overlay Styles --- */
-#search-container {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(30, 37, 45, 0.97);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-}
-
-#search-container.active {
+/* === Normalize nav + search icon across all pages === */
+#nav {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-#search-box {
-  background: #fff;
-  border: none;
-  border-radius: 4px;
-  width: 60%;
-  max-width: 600px;
-  padding: 1rem 1.5rem;
-  font-size: 1.2rem;
-  color: #212931;
+/* Make the link list consistent too */
+#nav .links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+#nav .links li { list-style: none; }
+
+/* Reset button so theme styles don't leak in */
+#nav .nav-icon {
+  all: unset;                      /* strips any default/button styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: .4rem;                  /* click target size */
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.search-result {
-  color: #212931;
-  margin-top: 1rem;
-  text-align: center;
+/* No focus box, no outline */
+#nav .nav-icon:focus,
+#nav .nav-icon:active { outline: none; box-shadow: none; }
+
+/* Icon styling (consistent size on every page) */
+#nav .nav-icon svg {
+  width: 22px; height: 22px;
+  stroke: #fff; color: #fff;
+  opacity: .95;
+  transition: opacity .15s ease, stroke .15s ease, color .15s ease;
 }
 
-.search-result:hover {
-  color: #18bfef;
+/* Hover state — no square box; just brighten or turn blue */
+#nav .nav-icon:hover svg {
+  opacity: 1;
+  stroke: #3aa3ff; color: #3aa3ff;  /* your blue accent */
+}
+
+/* For Blue Highlighting */
+#nav .nav-icon:hover,
+#nav .nav-icon:focus-visible {
+  box-shadow: none; border: 0; background: transparent;
 }
