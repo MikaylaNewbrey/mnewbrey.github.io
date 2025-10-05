@@ -6,3 +6,23 @@ markdown: kramdown
 permalink: /posts/:title/
 excerpt_separator: "<!--more-->"
 plugins: []          # GitHub Pages safe mode (no extra plugins)
+
+# Include all posts in search (even future-dated)
+future: true
+
+# Ensure JSON and tag pages are built
+include:
+  - _pages
+  - search.json
+
+# Exclude dev junk
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Markdown defaults (good for clean output)
+kramdown:
+  input: GFM
+  hard_wrap: false
