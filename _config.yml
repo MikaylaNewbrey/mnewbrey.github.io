@@ -7,6 +7,20 @@ permalink: /posts/:title/
 excerpt_separator: "<!--more-->"
 plugins: []          # GitHub Pages safe mode (no extra plugins)
 
+collections:
+  pastry:
+    output: true
+    permalink: /pastry-lab/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: pastry
+    values:
+      layout: post          # reuse existing _layouts/post.html
+      section: Pastry Lab
+
+
 # Include all posts in search (even future-dated)
 future: true
 
