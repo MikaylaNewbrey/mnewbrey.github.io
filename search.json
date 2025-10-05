@@ -2,15 +2,30 @@
 layout: none
 permalink: /search.json
 ---
+
 [
-{% for post in site.posts %}
-  {% assign tags_str = post.tags | join: ' ' %}
-  {
-    "title": {{ post.title | jsonify }},
-    "url": {{ post.url | relative_url | jsonify }},
-    "date": "{{ post.date | date: '%Y-%m-%d' }}",
-    "tags": {{ tags_str | jsonify }},
-    "content": {{ post.content | strip_html | normalize_whitespace | truncate: 1400 | jsonify }}
-  }{% unless forloop.last %},{% endunless %}
+{% assign all = site.pages | concat: site.posts %}
+{% for p in all %}
+  {% unless p.exclude_from_search %}
+    {
+      "title": {{ p.title | jsonify }},
+      "url": {{ p.url | relative_url | jsonify }},
+      "date": {{ p.date | date: "%Y-%m-%d" | jsonify }},
+      "tags": {{ p.tags | join: " " | jsonify }},
+      "content": {{ p.content | strip_html | normalize_whitespace | truncate: 4000 | jsonify }},
+      "kind": {% if p.collection == "posts" %}"post"{% else %}"page"{% endif %},
+      "section": {% if p.section %}
+                   {{ p.section | jsonify }}
+                 {% elsif p.collection == "posts" %}
+                   "Post"
+                 {% elsif p.url contains '/about/' %}
+                   "About"
+                 {% elsif p.url contains '/science/' %}
+                   "Science"
+                 {% else %}
+                   "Page"
+                 {% endif %}
+    }{% unless forloop.last %},{% endunless %}
+  {% endunless %}
 {% endfor %}
 ]
