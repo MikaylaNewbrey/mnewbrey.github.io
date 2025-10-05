@@ -1,30 +1,142 @@
 ---
 title: Pastry Lab Notebook
-layout: default
+layout: none
 permalink: /pastry-lab/
 section: Pastry Lab Notebook
 description: Experiments in butter ratios, temperature control, and edible chemistry.
 ---
 
-<section class="post">
-  <header class="major">
-    <h1>Pastry Lab Notebook</h1>
-    <p>Controlled trials in butter ratios, replication attempts in sourdough, and the occasional breakthrough in laminated doughs.</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Pastry Lab Notebook – {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}"></noscript>
+</head>
+<body class="is-preload">
+<div id="wrapper">
+
+  <!-- Header -->
+  <header id="header">
+    <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
   </header>
 
-  <div class="image main">
-    <img src="/images/pastry_lab.jpg" alt="Baking experiments in progress" />
+  <!-- Nav (reuse your main nav + search include if you want it here too) -->
+  <nav id="nav">
+    <ul class="links">
+      <li><a href="{{ '/' | relative_url }}">Field Notes & Research</a></li>
+      <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+      <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
+      <li class="active"><a href="{{ '/pastry-lab/' | relative_url }}">Pastry Lab</a></li>
+    </ul>
+    <div style="margin-left:auto">
+      <button id="open-search" type="button" aria-label="Open search"
+              class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <div id="main">
+
+    <!-- Featured Post (optional) -->
+    {% assign featured = site.pastry | where: "featured", true | sort: "date" | last %}
+    {% if featured %}
+    <article class="post featured">
+      <header class="major">
+        <span class="date">{{ featured.date | date: "%b %-d, %Y" }}</span>
+        <h2><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h2>
+        <p>{{ featured.excerpt | default: featured.content | strip_html | truncate: 240 }}</p>
+      </header>
+      {% if featured.image %}
+        <a href="{{ featured.url | relative_url }}" class="image main">
+          <img src="{{ featured.image | relative_url }}" alt="">
+        </a>
+      {% endif %}
+      <ul class="actions special">
+        <li><a href="{{ featured.url | relative_url }}" class="button large">Full Story</a></li>
+      </ul>
+    </article>
+    {% endif %}
+
+    <!-- Posts -->
+    <section class="posts">
+      {% assign pastry_sorted = site.pastry | sort: "date" | reverse %}
+      {% for post in pastry_sorted %}
+        {% if featured and post.url == featured.url %}
+          {% continue %}
+        {% endif %}
+        <article>
+          <header>
+            <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+          </header>
+
+          {% if post.image %}
+          <a href="{{ post.url | relative_url }}" class="image fit">
+            <img src="{{ post.image | relative_url }}" alt="">
+          </a>
+          {% endif %}
+
+          <p>{{ post.excerpt | default: post.content | strip_html | truncate: 180 }}</p>
+          <ul class="actions special">
+            <li><a href="{{ post.url | relative_url }}" class="button">Full Story</a></li>
+          </ul>
+        </article>
+      {% endfor %}
+    </section>
+
   </div>
 
-  <p>Welcome to my other lab — the kitchen. Baking, much like research, is about curiosity, experimentation, and patience (with a little less data cleaning). 
-  This page documents my pastry experiments: what worked, what didn’t, and what’s still in the oven. Each entry includes recipe notes, photos, and reflections on process and technique.</p>
+  <!-- Footer (reuse your footer) -->
+  <footer id="footer">
+    <section class="split contact">
+      <section class="alt">
+        <h3>Affiliation</h3>
+        <p><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">University of Massachusetts Amherst, OEB Program</a></p>
+      </section>
+      <section>
+        <h3>ORCiD</h3>
+        <p><a href="https://orcid.org/0009-0008-1202-4962" target="_blank">0009-0008-1202-4962</a></p>
+      </section>
+      <section>
+        <h3>Email</h3>
+        <p><a href="#">info@untitled.tld</a></p>
+      </section>
+      <section>
+        <h3>Social</h3>
+        <ul class="icons alt">
+          <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+        </ul>
+      </section>
+    </section>
+  </footer>
 
-  <h2>Latest Experiments</h2>
-  <ul>
-    <li><a href="/pastry-lab/croissant-trials/">Croissant Trials: Variables in Lamination and Proofing</a></li>
-    <li><a href="/pastry-lab/brioche-hydration/">Brioche Hydration Study</a></li>
-    <li><a href="/pastry-lab/choux-pastry/">Optimizing Choux Pastry Rise</a></li>
-  </ul>
+  <div id="copyright">
+    <ul>
+      <li>&copy; {{ site.title }}</li>
+      <li>All Views Expressed Are My Own</li>
+    </ul>
+  </div>
 
-  <p>Like any good lab, this one is open access. Feel free to browse, replicate, and improve upon these edible experiments.</p>
-</section>
+</div>
+
+<!-- theme scripts -->
+<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
+{% include search.html %}
+</body>
+</html>
