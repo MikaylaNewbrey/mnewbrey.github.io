@@ -1,123 +1,66 @@
 ---
-title: Pastry Lab Notebook
-layout: none
-permalink: /pastry-lab/
-section: Pastry Lab Notebook
-description: Experiments in butter ratios, temperature control, and edible chemistry.
+title: "Apple Butter Bread: A Study in Disguised Cake"
+date: 2025-10-05
+image: /images/baking/apple-butter-bread.jpg
+tags: [quick-bread, recipe, fall-baking]
+featured: true
+excerpt: "Testing hydration, fat content, and bake time in an apple butter loaf that behaves like bread but eats like cake."
 ---
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>Pastry Lab Notebook – {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}"></noscript>
-</head>
-<body class="is-preload">
-<div id="wrapper">
+Moist, spiced, and unapologetically autumnal—this loaf walks the line between quick bread and dessert.  
+Designed like a lab protocol, formatted like a NYT recipe.
 
-  <!-- Header -->
-  <header id="header">
-    <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
-  </header>
+---
 
-  <!-- Nav (reuse your main nav + search include if you want it here too) -->
-  <nav id="nav">
-    <ul class="links">
-      <li><a href="{{ '/posts/' | relative_url }}">Field Notes & Research</a></li>
-      <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-      <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
-      <li class="active"><a href="{{ '/pastry-lab/' | relative_url }}">Pastry Lab</a></li>
-    </ul>
-    <div style="margin-left:auto">
-      <button id="open-search" type="button" aria-label="Open search"
-              class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </button>
-    </div>
-  </nav>
+<div style="display: flex; gap: 3rem; align-items: flex-start;">
 
-  <!-- Main -->
-  <div id="main">
+<div style="flex: 1;">
 
-<!-- Posts grid -->
-    <section class="posts">
-      {% assign pastry_sorted = site.pastry | sort: "date" | reverse %}
-      {% for post in pastry_sorted %}
-        {% if featured and post.url == featured.url %}
-          {% continue %}
-        {% endif %}
-        <article>
-          <header>
-            <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
-            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-          </header>
+### **Ingredients**
 
-          {% if post.image %}
-          <a href="{{ post.url | relative_url }}" class="image fit">
-            <img src="{{ post.image | relative_url }}" alt="">
-          </a>
-          {% endif %}
+**Wet Ingredients**  
+- 1 cup apple butter  
+- ½ cup melted butter (or tallow)  
+- 2 eggs  
+- 1 tsp vanilla extract  
 
-          <p>{{ post.excerpt | default: post.content | strip_html | truncate: 180 }}</p>
-          <ul class="actions special">
-            <li><a href="{{ post.url | relative_url }}" class="button">Full Story</a></li>
-          </ul>
-        </article>
-      {% endfor %}
-    </section>
+**Dry Ingredients**  
+- 1¾ cups flour (or einkorn)  
+- 1 tsp baking soda  
+- ½ tsp salt  
+- 1 tsp cinnamon  
+- ½ tsp allspice  
+- ¼ tsp clove  
 
-  </div>
-
-
-  <!-- Footer (reuse your footer) -->
-  <footer id="footer">
-    <section class="split contact">
-      <section class="alt">
-        <h3>Affiliation</h3>
-        <p><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">University of Massachusetts Amherst, OEB Program</a></p>
-      </section>
-      <section>
-        <h3>ORCiD</h3>
-        <p><a href="https://orcid.org/0009-0008-1202-4962" target="_blank">0009-0008-1202-4962</a></p>
-      </section>
-      <section>
-        <h3>Email</h3>
-        <p><a href="#">info@untitled.tld</a></p>
-      </section>
-      <section>
-        <h3>Social</h3>
-        <ul class="icons alt">
-          <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-        </ul>
-      </section>
-    </section>
-  </footer>
-
-  <div id="copyright">
-    <ul>
-      <li>&copy; {{ site.title }}</li>
-      <li>All Views Expressed Are My Own</li>
-    </ul>
-  </div>
+**Optional Add-ins**  
+- ½ cup chopped walnuts  
+- ½ cup diced apple  
 
 </div>
 
-<!-- theme scripts -->
-<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/util.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+<div style="flex: 2;">
 
-{% include search.html %}
-</body>
-</html>
+### **Method**
+
+1. Preheat oven to **350°F (175°C)**. Grease a 9×5" loaf pan with butter or tallow.  
+2. In a large bowl, whisk **apple butter**, **melted butter**, **eggs**, and **vanilla** until smooth.  
+3. In a separate bowl, combine **flour**, **baking soda**, **salt**, and **spices**.  
+4. Gradually fold dry mixture into wet until just combined—avoid overmixing.  
+5. Fold in **walnuts** or **diced apple** if desired.  
+6. Pour into loaf pan and bake for **55–65 minutes**, or until a toothpick tests clean.  
+7. Cool 15 minutes before removing. Serve warm or room temperature.
+
+</div>
+</div>
+
+---
+
+### **Notes**
+- Brown the butter for deeper flavor.  
+- Works beautifully as muffins (20–22 min bake).  
+- Add a maple-cream glaze if you’re ready to admit it’s cake.
+
+---
+
+### **Source**
+Developed by [Your Name] — structured as a culinary experiment.
