@@ -36,14 +36,18 @@
           <li><a href="/about/">About</a></li>
           <li><a href="/science/">Science In Action</a></li>
         </ul>
-        <button id="open-search" type="button" aria-label="Open search"
-        class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="11" cy="11" r="8"></circle>
-    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-  </svg>
-</button>
+
+          <!-- Right: Search -->
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <button id="open-search" type="button" aria-label="Open search"
+                  class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
       </nav>
 
       <!-- Main -->
@@ -150,5 +154,6 @@
   {% include search.html %}
   </body>
 </html>
+
 
 
