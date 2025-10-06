@@ -5,6 +5,7 @@ image: /images/baking/apple-butter-bread.jpg
 permalink: /pastry/apple-butter-cake/
 tags: [apple, loaf-cake, recipe, fall-baking]
 featured: true
+layout: post
 excerpt: "Notes on replacing banana with apple butter in a brown-butter loaf that can’t decide if it’s bread or cake."
 ---
 
