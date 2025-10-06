@@ -3,9 +3,9 @@ title: "Apple Butter Bread: A Study in Disguised Cake"
 date: 2025-10-05
 image: /images/baking/apple-butter-bread.jpg
 permalink: /pastry/apple-butter-cake/
-tags: [quick-bread, recipe, fall-baking]
+tags: [apple, loaf-cake, recipe, fall-baking]
 featured: true
-excerpt: "Testing hydration, fat content, and bake time in an apple butter loaf that behaves like bread but eats like cake."
+excerpt: "Notes on replacing banana with apple butter in a brown-butter loaf that can’t decide if it’s bread or cake."
 ---
 
 This loaf is unapologetically autumnal. I stopped by Scott Farm this weekend and couldn’t resist their apple butter. Left with a few jars and, naturally, too many apples. This recipe doesn’t call for fresh ones (they’re destined for a Gâteau Invisible), but if you’re that kind of person, go ahead and fold some in. It’ll only make your kitchen smell better.  
