@@ -10,130 +10,180 @@ section: Home
     <title>Mikayla Newbrey</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
   </head>
-  <body class="is-preload">
+  <body class="landing is-preload">
 
-    <!-- Wrapper -->
-    <div id="wrapper" class="fade-in">
-
-      <!-- Intro -->
-      <div id="intro">
-        <h1>Mikayla Newbrey</h1>
-        <p>PhD Student in Organismal and Evolutionary Biology<br />
-        Researching how climate change shapes marine life.</p>
-        <ul class="actions">
-          <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-        </ul>
-      </div>
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
 
       <!-- Header -->
-      <header id="header">
-        <a href="/" class="logo">Mikayla Newbrey</a>
+      <header id="header" class="alt">
+        <h1><a href="{{ '/' | relative_url }}">Mikayla Newbrey</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                  <li><a href="{{ '/posts/' | relative_url }}">Field Notes &amp; Research</a></li>
+                  <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+                  <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
+                  <li>
+                    <button id="open-search" type="button" style="width:100%;" onclick="window.__openSearch && window.__openSearch()">Search</button>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
       </header>
 
-      <!-- Nav -->
-       <nav id="nav">
-    <ul class="links">
-      <li><a href="{{ '/posts/' | relative_url }}">Field Notes & Research</a></li>
-      <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-      <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
-      <li><a href="{{ '/pastry-lab/' | relative_url }}">Pastry Lab</a></li>
-    </ul>
-
-          <!-- Right: Search -->
-        <div style="display:flex;align-items:center;gap:1rem;">
-          <button id="open-search" type="button" aria-label="Open search"
-                  class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </button>
-        </div>
-      </nav>
-
-      <!-- Main -->
-      <div id="main">
-
-        <!-- Featured Post -->
-        <article class="post featured">
-          <header class="major">
-            <span class="date">September 29, 2025</span>
-            <h2><a href="#">And this is a<br />massive headline</a></h2>
-            <p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-            facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-            amet nullam sed etiam veroeros.</p>
-          </header>
-          <a href="#" class="image main"><img src="/images/pic01.jpg" alt="" /></a>
+      <!-- Banner -->
+      <section id="banner">
+        <div class="inner">
+          <h2>Mikayla Newbrey</h2>
+          <p>PhD student in Organismal and Evolutionary Biology. I study how movement, local adaptation, and a changing ocean shape marine life.</p>
           <ul class="actions special">
-            <li><a href="#" class="button large">Full Story</a></li>
+            <li><a href="{{ '/posts/' | relative_url }}" class="button primary">Explore my work</a></li>
+            <li><a href="{{ '/about/' | relative_url }}" class="button">About</a></li>
           </ul>
-        </article>
+        </div>
+        <a href="#one" class="more scrolly">Learn More</a>
+      </section>
 
-        <!-- CTA: Explore my work -->
-<div class="actions special" style="text-align:center; margin: 0 0 2.5rem;">
-  <a href="{{ '/posts/' | relative_url }}" class="button large">Explore my work</a>
-</div>
+      <!-- One: Research snapshot -->
+      <section id="one" class="wrapper style1 special">
+        <div class="inner">
+          <header class="major">
+            <h2>Research focus</h2>
+            <p> lorem ipum.</p>
+          </header>
+          <ul class="icons major">
+            <li><span class="icon solid fa-dna major style1"><span class="label">Genomics</span></span></li>
+            <li><span class="icon solid fa-water major style2"><span class="label">Environment</span></span></li>
+            <li><span class="icon solid fa-shoe-prints major style3"><span class="label">Movement</span></span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Two: Spotlights -->
+      <section id="two" class="wrapper alt style2">
+        <section class="spotlight">
+          <div class="image"><img src="{{ '/images/pic01.jpg' | relative_url }}" alt="" /></div>
+          <div class="content">
+            <h2>Field Notes &amp; Research</h2>
+            <p>Open lab notebook entries, figures in progress, and notes.</p>
+            <ul class="actions">
+              <li><a href="{{ '/posts/' | relative_url }}" class="button">Browse posts</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="spotlight">
+          <div class="image"><img src="{{ '/images/pic02.jpg' | relative_url }}" alt="" /></div>
+          <div class="content">
+            <h2>Science In Action</h2>
+            <p>Methods, workflows, and tutorials I use in the lab and in the field.</p>
+            <ul class="actions">
+              <li><a href="{{ '/science/' | relative_url }}" class="button">See methods</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="spotlight">
+          <div class="image"><img src="{{ '/images/pic03.jpg' | relative_url }}" alt="" /></div>
+          <div class="content">
+            <h2>Lab</h2>
+            <p>lorem ipsum.</p>
+            <ul class="actions">
+              <li><a href="{{ '/pastry-lab/' | relative_url }}" class="button">Bake with me</a></li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+      <!-- Three: Highlights -->
+      <section id="three" class="wrapper style3 special">
+        <div class="inner">
+          <header class="major">
+            <h2>Highlights</h2>
+            <p>A few quick links and resources.</p>
+          </header>
+          <ul class="features">
+            <li class="icon solid fa-file-alt">
+              <h3>CV</h3>
+              <p>My academic CV and selected presentations.</p>
+              <a class="button small" href="{{ '/files/Mikayla_Newbrey_CV.pdf' | relative_url }}">Download</a>
+            </li>
+            <li class="icon solid fa-flask">
+              <h3>Protocols</h3>
+              <p>Reproducible workflows for the curious.</p>
+              <a class="button small" href="{{ '/science/' | relative_url }}">View</a>
+            </li>
+            <li class="icon brands fa-orcid">
+              <h3>ORCiD</h3>
+              <p>Author record and identifiers.</p>
+              <a class="button small" href="https://orcid.org/0009-0008-1202-4962" target="_blank" rel="noopener">Open</a>
+            </li>
+            <li class="icon brands fa-github">
+              <h3>GitHub</h3>
+              <p>Code, figures, and data notes.</p>
+              <a class="button small" href="https://github.com/" target="_blank" rel="noopener">Repos</a>
+            </li>
+            <li class="icon solid fa-camera">
+              <h3>Fieldwork</h3>
+              <p>Photos from the road and the dock.</p>
+              <a class="button small" href="{{ '/posts/' | relative_url }}">Gallery</a>
+            </li>
+            <li class="icon solid fa-envelope">
+              <h3>Contact</h3>
+              <p>Get in touch by email.</p>
+              <a class="button small" href="mailto:info@untitled.tld">Email</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section id="cta" class="wrapper style4">
+        <div class="inner">
+          <header>
+            <h2>Collaborations and questions</h2>
+          </header>
+          <ul class="actions stacked">
+            <li><a href="mailto:info@untitled.tld" class="button fit primary">Email me</a></li>
+            <li><a href="{{ '/about/' | relative_url }}" class="button fit">More about me</a></li>
+          </ul>
+        </div>
+      </section>
+
       <!-- Footer -->
       <footer id="footer">
-        <section class="split contact">
-          <section class="alt">
-            <h3>Affiliation</h3>
-            <p><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">University of Massachusetts Amherst, OEB Program</a></p>
-          </section>
-          <section>
-            <h3>ORCiD</h3>
-            <p><a href="https://orcid.org/0009-0008-1202-4962" target="_blank">0009-0008-1202-4962</a></p>
-          </section>
-          <section>
-            <h3>Email</h3>
-            <p><a href="#">info@untitled.tld</a></p>
-          </section>
-          <section>
-            <h3>Social</h3>
-            <ul class="icons alt">
-              <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-              <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-              <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-              <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-            </ul>
-          </section>
-        </section>
-      </footer>
-
-      <!-- Copyright -->
-      <div id="copyright">
-        <ul>
-          <li>&copy; Mikayla Newbrey</li>
-          <li>All Views Expressed Are My Own</li>
+        <ul class="icons">
+          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank" rel="noopener"><span class="label">ORCiD</span></a></li>
+          <li><a href="https://instagram.com/" class="icon brands fa-instagram" target="_blank" rel="noopener"><span class="label">Instagram</span></a></li>
+          <li><a href="https://github.com/" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+          <li><a href="mailto:info@untitled.tld" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
         </ul>
-      </div>
+        <ul class="copyright">
+          <li>&copy; {{ site.time | date: '%Y' }} Mikayla Newbrey</li>
+          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank" rel="noopener">UMass Amherst, OEB</a></li>
+          <li>All views expressed are my own</li>
+          <li>Design base: <a href="https://html5up.net" target="_blank" rel="noopener">HTML5 UP</a></li>
+        </ul>
+      </footer>
 
     </div>
 
     <!-- Scripts -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/jquery.scrollex.min.js"></script>
-    <script src="/assets/js/jquery.scrolly.min.js"></script>
-    <script src="/assets/js/browser.min.js"></script>
-    <script src="/assets/js/breakpoints.min.js"></script>
-    <script src="/assets/js/util.js"></script>
-    <script src="/assets/js/main.js"></script>
-  {% include search.html %}
+    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    {% include search.html %}
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
