@@ -4463,147 +4463,62 @@ section.posts .actions.special { margin-top: 1rem; }
 }
 #nav .nav-icon:hover svg { opacity: 1; }
 
+/* ===== Research Focus — final unified sizing & alignment ===== */
 
-/* === Research Focus: show label BELOW the diamond on hover === */
-
-/* Each icon's <li> becomes the positioning anchor */
-.icons.major li { position: relative; }
-
-
-/* UNHIDE the Spectral "visually hidden" label and place it below */
-.icons.major li .label{
-  display: block !important;                 
-  position: absolute !important;
-  left: 50% !important;
-  top: calc(100% + 0.55rem) !important;      /* distance below diamond */
-  transform: translateX(-50%) !important;    /* no rotation */
-  opacity: 0 !important;
-  transition: opacity .2s ease !important;
-
-  /* undo Spectral's hiding */
-  clip: auto !important; clip-path: none !important;
-  width: auto !important; height: auto !important;
-  overflow: visible !important; margin: 0 !important;
-  border: 0 !important; text-indent: 0 !important;
-  white-space: nowrap !important; pointer-events: none !important;
-
-  /* visual: match subtitle tone */
-  color: rgba(255,255,255,0.70) !important;
-  font-weight: 600 !important;
-  letter-spacing: .06em !important;
-  text-transform: none !important;
-  font-size: .95rem !important;
-}
-
-.icons.major li:hover .label{
-  opacity: 1 !important;
-}
-
-/* Keep per-icon colors (glyphs render via :before) */
-.icons.major .fa-dna:before   { color:#5fffd2 !important; }
-.icons.major .fa-water:before { color:#58caff !important; }
-.icons.major .fa-fish:before  { color:#4dbaff !important; }
-
-/* === Straighten the hover text under diamonds === */
-
-/* Reset rotation so text stays horizontal even though the diamond is rotated */
-.icons.major li .label {
-  transform: translateX(-50%) rotate(-45deg) rotate(45deg) !important;
-  /* translation cancels Spectral’s parent rotation */
-  text-align: center !important;
-  line-height: 1.2 !important;
-}
-/* ===== FINAL FIX: upright label, clean spacing, no overlap ===== */
-
-/* layout each item vertically */
-.icons.major {
-  display: flex;
-  gap: 3rem;                 /* space between diamonds */
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-.icons.major li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* keep your nice dim-on-hover; no blur */
-.icon.major:before { transition: opacity .25s ease; }
-.icon.major:hover:before { opacity: .35; }
-.icon.major::after { content: none !important; }
-
-/* per-icon colors (glyphs render via :before) */
-.icons.major .fa-dna:before   { color:#5fffd2 !important; }
-.icons.major .fa-water:before { color:#58caff !important; }
-.icons.major .fa-fish:before  { color:#4dbaff !important; }
-
-/* >>> RESET any old absolute/rotated label styles <<< */
-.icons.major li .label{
-  position: static !important;      /* no absolute positioning */
-  transform: none !important;       /* no rotation/translation */
-  clip: auto !important;
-  clip-path: none !important;
-  width: auto !important; height: auto !important;
-  overflow: visible !important;
-  margin: 0 !important;
-  border: 0 !important; text-indent: 0 !important;
-  white-space: nowrap !important;
-  pointer-events: none !important;
-
-  /* spacing & appearance */
-  margin-top: 1.0rem !important;    /* clear the diamond’s bottom point */
-  line-height: 1.2;
-  opacity: 0;                       /* hidden until hover */
-  transition: opacity .2s ease;
-  color: rgba(255,255,255,0.72);
-  font-weight: 600;
-  letter-spacing: .05em;
-  text-transform: none;
-  font-size: .95rem;
-  text-align: center;
-}
-
-/* reveal label when hovering the item */
-.icons.major li:hover .label { opacity: 1; }
-
-/* ===== Research Focus: clean vertical stack + hover label (final) ===== */
-
-/* Layout */
+/* Row layout */
 .icons.major{
   display:flex;
-  gap:3rem;                 /* space between diamonds */
   justify-content:center;
-  align-items:flex-start;
+  align-items:flex-start;   /* align labels to the same baseline */
+  gap:3rem;                 /* spacing between items */
   flex-wrap:wrap;
 }
+
+/* Each item is a vertical stack: diamond on top, label below */
 .icons.major li{
   display:flex;
-  flex-direction:column;    /* icon on top, label below */
+  flex-direction:column;
   align-items:center;
-  gap:.7rem;                /* space between diamond and label */
+  gap:.75rem;               /* space between diamond and label */
+  min-width:10rem;          /* keeps spacing visually even */
 }
 
-/* Diamond/icon behavior (keep the nice dim on hover; no blur) */
-.icon.major:before{ transition:opacity .25s ease; }
-.icon.major:hover:before{ opacity:.35; }
-.icon.major::after{ content:none !important; }
+/* Diamond wrapper: fixed, identical size for all */
+.icon.major{
+  width:7.25rem;
+  height:7.25rem;
+  border:2px solid #fff;
+  border-radius:4px;
+  transform:rotate(45deg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;            /* never compress */
+}
 
-/* Per-icon colors (glyphs render via :before) */
+/* Font Awesome glyph inside the diamond */
+.icon.major:before{
+  transform:rotate(-45deg); /* upright glyph */
+  font-size:2.6rem;         /* consistent glyph size */
+  line-height:1;
+  transition:opacity .25s ease;
+}
+.icon.major:hover:before{ opacity:.35; } /* subtle dim on hover */
+
+/* Per-icon colors */
 .icons.major .fa-dna:before   { color:#5fffd2 !important; }
 .icons.major .fa-water:before { color:#58caff !important; }
 .icons.major .fa-fish:before  { color:#4dbaff !important; }
 
-/* Label: normal block (upright), reserved space, fade in on hover */
+/* Label: upright, reserved space so nothing jumps */
 .icons.major li .label{
-  position:static !important;     /* kill any old absolute rules */
-  transform:none !important;      /* kill any old rotation/translation */
+  position:static !important;    /* kill any absolute/rotated leftovers */
+  transform:none !important;
   clip:auto !important; clip-path:none !important; text-indent:0 !important;
 
-  min-height:1.2em;               /* reserve space so layout doesn’t jump */
+  min-height:1.2em;             /* reserve space, align baselines */
   line-height:1.2;
-  opacity:0;
+  opacity:0;                    /* fade in on hover */
   transition:opacity .2s ease;
 
   color:rgba(255,255,255,.72);
@@ -4616,5 +4531,5 @@ section.posts .actions.special { margin-top: 1rem; }
   pointer-events:none;
 }
 
-/* Reveal label when hovering the item */
+/* Reveal label on hover */
 .icons.major li:hover .label{ opacity:1; }
