@@ -4465,53 +4465,38 @@ section.posts .actions.special { margin-top: 1rem; }
 
 
 
-/* ==== ICON DIAMOND HOVER FIX: ensure label visible above blur, dim icon ===== */
-.icon.major { position: relative; overflow: hidden; }
+/* ==== FIX: Icon colors + force label visibility above blur ==== */
 
-/* Dim the Font Awesome glyph on hover (uses ::before in HTML5UP) */
-.icon.major:before { transition: opacity .3s ease; }
+/* Bring back per-icon colors (Font Awesome glyph is on :before) */
+.icons.major .fa-dna:before   { color: #5fffd2 !important; }
+.icons.major .fa-water:before { color: #58caff !important; }
+.icons.major .fa-fish:before  { color: #4dbaff !important; }
+
+/* Make sure icon glyph actually dims on hover (Spectral uses :before) */
+.icon.major:before { transition: opacity .25s ease; }
 .icon.major:hover:before { opacity: .35; }
 
-/* Blur layer stays behind the label */
-.icon.major::after{
-  content:"";
-  position:absolute; inset:0;
-  background:rgba(255,255,255,0.10);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  opacity:0;
-  transition: opacity .3s ease;
-  z-index:0;
-  border-radius:3px;
+/* Ensure the label is NOT visually hidden by Spectral's base rules */
+.icon > .label {
+  position: absolute !important;
+  top: 50% !important; left: 50% !important;
+  transform: translate(-50%, -50%) rotate(-45deg) !important;
+  opacity: 0 !important; z-index: 2 !important;
+  /* undo hidden */
+  clip: auto !important;
+  clip-path: none !important;
+  width: auto !important; height: auto !important;
+  overflow: visible !important;
+  margin: 0 !important; border: 0 !important; text-indent: 0 !important;
+  /* appearance */
+  background: rgba(255,255,255,0.92) !important;
+  color: #2a2c33 !important;
+  font-weight: 700 !important; letter-spacing: .05em !important; font-size: .9rem !important;
+  padding: .3em .6em !important; border-radius: .35rem !important; white-space: nowrap !important;
+  pointer-events: none !important;
+  transition: opacity .25s ease !important;
 }
-.icon.major:hover::after{ opacity:1; }
+.icon.major:hover > .label { opacity: 1 !important; }
 
-/* Override HTML5UP's hidden .label rules and show text centered & upright */
-.icon.major .label{
-  position:absolute;
-  top:50%; left:50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  z-index: 2;
-  opacity: 0;
-  transition: opacity .3s ease;
-  /* undo visually-hidden defaults */
-  clip: auto;
-  clip-path: none;
-  width: auto;
-  height: auto;
-  overflow: visible;
-  margin: 0;
-  border: 0;
-  text-indent: 0;
-  /* visual style */
-  background: rgba(255,255,255,0.92);
-  color: #2a2c33;
-  font-weight: 700;
-  letter-spacing: .05em;
-  font-size: .9rem;
-  padding: .3em .6em;
-  border-radius: .35rem;
-  white-space: nowrap;
-  pointer-events: none;
-}
-.icon.major:hover .label{ opacity:1; }
+/* Keep blur behind the label */
+.icon.major::after { z-index: 0 !important; }
