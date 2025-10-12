@@ -4465,38 +4465,54 @@ section.posts .actions.special { margin-top: 1rem; }
 
 
 
-/* ==== FIX: Icon colors + force label visibility above blur ==== */
+/* ——— SHOW THE LABEL ABOVE THE BLUR INSIDE DIAMONDS ——— */
+.icons.major .icon { position: relative; }           /* anchor for absolute label */
 
-/* Bring back per-icon colors (Font Awesome glyph is on :before) */
-.icons.major .fa-dna:before   { color: #5fffd2 !important; }
-.icons.major .fa-water:before { color: #58caff !important; }
-.icons.major .fa-fish:before  { color: #4dbaff !important; }
+/* Bring back per-icon colors (glyph is on :before) */
+.icons.major .fa-dna:before   { color:#5fffd2 !important; }
+.icons.major .fa-water:before { color:#58caff !important; }
+.icons.major .fa-fish:before  { color:#4dbaff !important; }
 
-/* Make sure icon glyph actually dims on hover (Spectral uses :before) */
+/* Dim the glyph on hover (Spectral uses :before) */
 .icon.major:before { transition: opacity .25s ease; }
-.icon.major:hover:before { opacity: .35; }
+.icon.major:hover:before { opacity:.35; }
 
-/* Ensure the label is NOT visually hidden by Spectral's base rules */
-.icon > .label {
-  position: absolute !important;
-  top: 50% !important; left: 50% !important;
-  transform: translate(-50%, -50%) rotate(-45deg) !important;
-  opacity: 0 !important; z-index: 2 !important;
-  /* undo hidden */
-  clip: auto !important;
-  clip-path: none !important;
-  width: auto !important; height: auto !important;
-  overflow: visible !important;
-  margin: 0 !important; border: 0 !important; text-indent: 0 !important;
-  /* appearance */
-  background: rgba(255,255,255,0.92) !important;
-  color: #2a2c33 !important;
-  font-weight: 700 !important; letter-spacing: .05em !important; font-size: .9rem !important;
-  padding: .3em .6em !important; border-radius: .35rem !important; white-space: nowrap !important;
-  pointer-events: none !important;
-  transition: opacity .25s ease !important;
+/* Blur layer BEHIND the label */
+.icon.major::after{
+  content:"";
+  position:absolute; inset:0;
+  background:rgba(255,255,255,0.10);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  opacity:0;
+  transition:opacity .25s ease;
+  z-index:1;                                /* below the label, above the glyph */
+  border-radius:3px;
 }
-.icon.major:hover > .label { opacity: 1 !important; }
+.icon.major:hover::after{ opacity:1; }
 
-/* Keep blur behind the label */
-.icon.major::after { z-index: 0 !important; }
+/* Force Spectral's .label to be visible, centered & upright */
+.icon > .label{
+  display:block !important;                 
+  position:absolute !important;
+  top:50% !important; left:50% !important;
+  transform:translate(-50%,-50%) rotate(-45deg) !important;
+  z-index:2 !important;
+  opacity:0 !important;
+  transition:opacity .25s ease !important;
+
+  /* undo "visually hidden" defaults */
+  clip:auto !important; clip-path:none !important;
+  width:auto !important; height:auto !important;
+  overflow:visible !important; margin:0 !important;
+  border:0 !important; text-indent:0 !important;
+
+  /* pill look */
+  background:rgba(255,255,255,0.92) !important;
+  color:#2a2c33 !important;
+  font-weight:700 !important; letter-spacing:.05em !important;
+  font-size:.9rem !important; white-space:nowrap !important;
+  padding:.3em .6em !important; border-radius:.35rem !important;
+  pointer-events:none !important;
+}
+.icon.major:hover > .label{ opacity:1 !important; }
