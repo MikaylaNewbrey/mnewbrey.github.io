@@ -2,19 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ page.title }} – {{ site.title }}</title>
-
     <meta name="description" content="{{ page.summary | default: page.excerpt | strip_html | truncate: 160 }}">
-    <meta name="author" content="{{ page.author | default: site.author }}">
-
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}"></noscript>
   </head>
   <body class="is-preload">
     <div id="page-wrapper">
 
-      <!-- Header -->
+      <!-- Header (keeps your slide-in menu + search) -->
       <header id="header">
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
         <nav id="nav">
@@ -35,44 +32,43 @@
         </nav>
       </header>
 
+      <!-- Hero banner: uses the post's front-matter image -->
+      {% if page.image %}
+      <section class="hero-post" style="background-image:url('{{ page.image | relative_url }}')"></section>
+      {% endif %}
+
       <!-- Main -->
       <article id="main">
-        <header>
-          <h2>{{ page.title }}</h2>
-          <p class="post-sub">
-            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
-            {% if page.author %} • {{ page.author }}{% endif %}
-            {% if page.subtitle %} • {{ page.subtitle }}{% endif %}
-          </p>
-        </header>
-
         <section class="wrapper alt style2">
           <div class="inner post">
-            {% if page.image %}
-              <figure class="post-hero">
-                <img src="{{ page.image | relative_url }}" alt="">
-              </figure>
-            {% endif %}
 
-            {% if page.tags %}
+            <!-- Engaging title/meta block BELOW the image -->
+            <header class="post-head">
+              <h1 class="post-title">{{ page.title }}</h1>
+              <p class="post-sub">
+                <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+                {% if page.author %} • {{ page.author }}{% endif %}
+                {% if page.subtitle %} • {{ page.subtitle }}{% endif %}
+              </p>
+
+              {% if page.tags %}
               <div class="post-tags">
                 {% for t in page.tags %}
                   <a href="{{ '/tag/' | append: t | slugify | append: '/' | relative_url }}">#{{ t }}</a>
                 {% endfor %}
               </div>
-            {% endif %}
+              {% endif %}
+            </header>
 
+            <!-- Body -->
             <div class="post-body">
               {{ content }}
             </div>
 
+            <!-- Prev / Next -->
             <nav class="post-nav">
-              <div>
-                {% if page.previous %}<a class="button small" href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
-              </div>
-              <div>
-                {% if page.next %}<a class="button small" href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
-              </div>
+              <div>{% if page.previous %}<a class="button small" href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}</div>
+              <div>{% if page.next %}<a class="button small" href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}</div>
             </nav>
           </div>
         </section>
@@ -90,7 +86,6 @@
           <li>All views expressed are my own</li>
         </ul>
       </footer>
-
     </div>
 
     <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
