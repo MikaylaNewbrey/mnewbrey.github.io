@@ -11,94 +11,58 @@
 
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}"></noscript>
-
-    <style>
-      .post-meta{opacity:.75;margin:.25rem 0 1rem}
-      .post-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.25rem}
-      .post-tags a{font-size:.8rem;padding:.25rem .55rem;border:1px solid #ddd;border-radius:999px;text-decoration:none}
-      .post-tags a:hover{border-color:#aaa}
-      .post-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:2rem}
-      .post-nav a{white-space:nowrap}
-
-      /* nav search icon */
-      #nav .nav-icon{background:none;border:0;padding:.25rem;cursor:pointer;color:inherit;display:flex;align-items:center}
-      #nav .nav-icon svg{color:#fff;stroke:#fff;opacity:.9}
-      #nav .nav-icon:hover svg{opacity:1}
-
-      /* results hover */
-      #results-container a.sr{transition:color .2s}
-      #results-container a.sr:hover{color:#3aa3ff;text-decoration:underline}
-    </style>
   </head>
   <body class="is-preload">
-    <div id="wrapper">
+    <div id="page-wrapper">
 
       <!-- Header -->
       <header id="header">
-        <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                  <li><a href="{{ '/posts/' | relative_url }}">Field Notes &amp; Research</a></li>
+                  <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+                  <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
+                  <li><a href="{{ '/pastry-lab/' | relative_url }}">Pastry Lab</a></li>
+                  <li>
+                    <button id="open-search" type="button" style="width:100%;" onclick="window.__openSearch && window.__openSearch()">Search</button>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
       </header>
 
-      <!-- Nav -->
-      <nav id="nav" style="display:flex;align-items:center;justify-content:space-between;">
-        <ul class="links" style="margin:0;display:flex;align-items:center;gap:2rem;">
-          <li><a href="/">Field Notes & Research</a></li>
-          <li><a href="/about/">About</a></li>
-          <li><a href="/science/">Science In Action</a></li>
-          <li><a href="/pastry/">Pastry Lab</a></li>
-        </ul>
-
-        <!-- Right: Search -->
-        <div style="display:flex;align-items:center;gap:1rem;">
-          <button id="open-search" type="button" aria-label="Open search"
-                  class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </button>
-        </div>
-      </nav>
-
       <!-- Main -->
-      <div id="main">
-        <section class="post">
-          <header class="major">
-            <span class="date">{{ page.date | date: "%b %-d, %Y" }}</span>
-            <h1>{{ page.title }}</h1>
-            {% if page.subtitle %}<p>{{ page.subtitle }}</p>{% endif %}
+      <article id="main">
 
-            {% if page.author %}
-              <p class="post-meta">By {{ page.author }}</p>
+        <!-- Post header (Spectral style) -->
+        <header>
+          <h2>{{ page.title }}</h2>
+          <p class="post-sub">
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+            {% if page.author %} • {{ page.author }}{% endif %}
+            {% if page.subtitle %} • {{ page.subtitle }}{% endif %}
+          </p>
+        </header>
+
+        <!-- Content band -->
+        <section class="wrapper alt style2">
+          <div class="inner">
+
+            {% if page.image %}
+            <span class="image fit" style="margin-bottom:1.5rem;">
+              <img src="{{ page.image | relative_url }}" alt="">
+            </span>
             {% endif %}
 
+            <!-- Tags -->
             {% if page.tags %}
-              <div class="post-tags">
-                {% for t in page.tags %}
-                  <a href="{{ '/tag/' | append: t | slugify | append: '/' | relative_url }}">#{{ t }}</a>
-                {% endfor %}
-              </div>
-            {% endif %}
-          </header>
-
-          {% if page.image %}
-            <span class="image main"><img src="{{ page.image | relative_url }}" alt=""></span>
-          {% endif %}
-
-          {{ content }}
-
-          <div class="post-nav">
-            <div>{% if page.previous %}← <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>{% endif %}</div>
-            <div>{% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a> →{% endif %}</div>
-          </div>
-        </section>
-      </div>
-
-      <!-- Footer -->
-      <footer id="footer" style="text-align:center; padding:2rem 0;">
-        <a class="button" href="{{ '/' | relative_url }}">← Back to Home</a>
-      </footer>
-    </div>
-    {% include search.html %}
-  </body>
-</html>
+            <div class="post-tags">
+              {% for t
