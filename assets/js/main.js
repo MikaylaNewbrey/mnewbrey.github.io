@@ -83,26 +83,3 @@
 
 })(jQuery);
 
-// --- Floating fish parallax (between sections) ---
-(function () {
-  var fish = document.querySelector('.parallax-fish');
-  if (!fish) return;
-
-  var speed = parseFloat(fish.getAttribute('data-speed')) || 0.30;
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  function update() {
-    if (reduceMotion.matches) {
-      fish.style.transform = 'translate3d(-50%, 0, 0)';
-      return;
-    }
-    var y = window.pageYOffset * speed;
-    // keep horizontal centering (-50%) from CSS, only move Y
-    fish.style.transform = 'translate3d(-50%, ' + y.toFixed(2) + 'px, 0)';
-  }
-
-  // initial and listeners
-  update();
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
-})();
