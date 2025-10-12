@@ -4513,45 +4513,50 @@ section.posts .actions.special { margin-top: 1rem; }
   text-align: center !important;
   line-height: 1.2 !important;
 }
+/* ===== FINAL FIX: upright label, clean spacing, no overlap ===== */
 
-/* ===== Research Focus: tidy vertical stack with subtle hover label ===== */
-
-/* 1) Lay out each item as a centered column */
+/* layout each item vertically */
 .icons.major {
   display: flex;
-  gap: 3rem;                      /* space between diamonds */
+  gap: 3rem;                 /* space between diamonds */
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
 }
-
 .icons.major li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .6rem;                     /* space between diamond and label */
 }
 
-/* 2) Diamond + icon behavior (keep your nice dim-on-hover) */
+/* keep your nice dim-on-hover; no blur */
 .icon.major:before { transition: opacity .25s ease; }
 .icon.major:hover:before { opacity: .35; }
-.icon.major::after { content: none !important; }   /* no blur */
+.icon.major::after { content: none !important; }
 
-/* Per-icon colors (glyphs render via :before) */
+/* per-icon colors (glyphs render via :before) */
 .icons.major .fa-dna:before   { color:#5fffd2 !important; }
 .icons.major .fa-water:before { color:#58caff !important; }
 .icons.major .fa-fish:before  { color:#4dbaff !important; }
 
-/* 3) Label: reserve space, then fade in on hover (no slant, no jump) */
+/* >>> RESET any old absolute/rotated label styles <<< */
 .icons.major li .label{
-  min-height: 1.2em;             /* reserve space so layout doesn’t shift */
-  line-height: 1.2;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity .2s ease, transform .2s ease;
-  pointer-events: none;
+  position: static !important;      /* no absolute positioning */
+  transform: none !important;       /* no rotation/translation */
+  clip: auto !important;
+  clip-path: none !important;
+  width: auto !important; height: auto !important;
+  overflow: visible !important;
+  margin: 0 !important;
+  border: 0 !important; text-indent: 0 !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
 
-  /* match your subtitle tone */
+  /* spacing & appearance */
+  margin-top: 1.0rem !important;    /* clear the diamond’s bottom point */
+  line-height: 1.2;
+  opacity: 0;                       /* hidden until hover */
+  transition: opacity .2s ease;
   color: rgba(255,255,255,0.72);
   font-weight: 600;
   letter-spacing: .05em;
@@ -4560,10 +4565,56 @@ section.posts .actions.special { margin-top: 1rem; }
   text-align: center;
 }
 
-/* reveal label on hover of the item or the diamond */
-.icons.major li:hover .label,
-.icons.major li .icon.major:hover + .label {
-  opacity: 1;
-  transform: translateY(0);
+/* reveal label when hovering the item */
+.icons.major li:hover .label { opacity: 1; }
+
+/* ===== Research Focus: clean vertical stack + hover label (final) ===== */
+
+/* Layout */
+.icons.major{
+  display:flex;
+  gap:3rem;                 /* space between diamonds */
+  justify-content:center;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+.icons.major li{
+  display:flex;
+  flex-direction:column;    /* icon on top, label below */
+  align-items:center;
+  gap:.7rem;                /* space between diamond and label */
 }
 
+/* Diamond/icon behavior (keep the nice dim on hover; no blur) */
+.icon.major:before{ transition:opacity .25s ease; }
+.icon.major:hover:before{ opacity:.35; }
+.icon.major::after{ content:none !important; }
+
+/* Per-icon colors (glyphs render via :before) */
+.icons.major .fa-dna:before   { color:#5fffd2 !important; }
+.icons.major .fa-water:before { color:#58caff !important; }
+.icons.major .fa-fish:before  { color:#4dbaff !important; }
+
+/* Label: normal block (upright), reserved space, fade in on hover */
+.icons.major li .label{
+  position:static !important;     /* kill any old absolute rules */
+  transform:none !important;      /* kill any old rotation/translation */
+  clip:auto !important; clip-path:none !important; text-indent:0 !important;
+
+  min-height:1.2em;               /* reserve space so layout doesn’t jump */
+  line-height:1.2;
+  opacity:0;
+  transition:opacity .2s ease;
+
+  color:rgba(255,255,255,.72);
+  font-weight:600;
+  letter-spacing:.05em;
+  text-transform:none;
+  font-size:.95rem;
+  text-align:center;
+  white-space:nowrap;
+  pointer-events:none;
+}
+
+/* Reveal label when hovering the item */
+.icons.major li:hover .label{ opacity:1; }
