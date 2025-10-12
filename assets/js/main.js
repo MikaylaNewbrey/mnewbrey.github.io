@@ -80,4 +80,55 @@
 
 		}
 
+
 })(jQuery);
+
+<script>
+(function(){
+  const layers = Array.from(document.querySelectorAll('.plx-layer'));
+  if (!layers.length) return;
+
+  // Compute an offset relative to the layer’s “home” so it parallax-moves nicely
+  const getOffset = (el, speed) => {
+    const rect = el.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const elTop = rect.top + scrollTop;         // element’s page-top
+    const viewportMid = scrollTop + window.innerHeight * 0.5;
+    // move faster/slower based on distance from viewport middle
+    return (viewportMid - elTop) * speed;
+  };
+
+  let ticking = false;
+  function update(){
+    ticking = false;
+    for (const el of layers){
+      const speed = parseFloat(el.dataset.speed) || 0.2;
+      const y = getOffset(el, speed);
+      // If element is horizontally centered, keep translateX(-50%)
+      if (el.style.left === '50%' || getComputedStyle(el).left === '50%'){
+        el.style.transform = `translate3d(-50%, ${y.toFixed(2)}px, 0)`;
+      } else {
+        el.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0)`;
+      }
+    }
+  }
+
+  function onScroll(){
+    if (!ticking){
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  // initial position
+  onScroll();
+
+  // Respect reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    window.removeEventListener('scroll', onScroll);
+    layers.forEach(el => el.style.transform = '');
+  }
+})();
+</script>
