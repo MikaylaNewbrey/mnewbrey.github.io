@@ -4533,3 +4533,48 @@ section.posts .actions.special { margin-top: 1rem; }
 
 /* Reveal label on hover */
 .icons.major li:hover .label{ opacity:1; }
+
+/* ——— Parallax stage ——— */
+.plx-wrap{
+  position: relative;
+  height: clamp(220px, 36vh, 520px); /* section height */
+  overflow: visible;
+  z-index: 1;
+  /* optional divider feel */
+  background: transparent;
+}
+
+.plx-canvas{
+  position: sticky;     /* “sticks” while the page scrolls behind it */
+  top: 0;
+  height: 100vh;        /* gives us a tall stage to animate within */
+  pointer-events: none; /* purely decorative */
+  z-index: 2;
+}
+
+/* Layer base style */
+.plx-layer{
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%,0,0); /* centered horizontally by default */
+  will-change: transform;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,.25));
+}
+
+/* The fish: tune size & anchor */
+.plx-fish{
+  width: clamp(200px, 28vw, 520px);
+  /* Start a little above the middle, tweak as you like: */
+  top: 20vh;
+}
+
+/* Prefer-reduced-motion: stop parallax */
+@media (prefers-reduced-motion: reduce){
+  .plx-layer{
+    transform: translate3d(-50%,0,0) !important;
+    will-change: auto;
+  }
+}
+
