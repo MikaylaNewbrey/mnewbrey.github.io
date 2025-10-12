@@ -4469,19 +4469,6 @@ section.posts .actions.special { margin-top: 1rem; }
 /* Each icon's <li> becomes the positioning anchor */
 .icons.major li { position: relative; }
 
-/* Keep your existing dim/blur effect on hover */
-.icon.major:before { transition: opacity .25s ease; }
-.icon.major:hover:before { opacity: .35; }
-.icon.major::after{
-  content:"";
-  position:absolute; inset:0;
-  background:rgba(255,255,255,0.10);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  opacity:0; transition:opacity .25s ease;
-  border-radius:3px;
-}
-.icon.major:hover::after{ opacity:1; }
 
 /* UNHIDE the Spectral "visually hidden" label and place it below */
 .icons.major li .label{
