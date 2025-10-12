@@ -4534,47 +4534,25 @@ section.posts .actions.special { margin-top: 1rem; }
 /* Reveal label on hover */
 .icons.major li:hover .label{ opacity:1; }
 
-/* ——— Parallax stage ——— */
-.plx-wrap{
-  position: relative;
-  height: clamp(220px, 36vh, 520px); /* section height */
-  overflow: visible;
-  z-index: 1;
-  /* optional divider feel */
-  background: transparent;
-}
-
-.plx-canvas{
-  position: sticky;     /* “sticks” while the page scrolls behind it */
-  top: 0;
-  height: 100vh;        /* gives us a tall stage to animate within */
-  pointer-events: none; /* purely decorative */
-  z-index: 2;
-}
-
-/* Layer base style */
-.plx-layer{
+/* === Floating parallax fish between sections === */
+.parallax-fish {
   position: absolute;
   left: 50%;
-  transform: translate3d(-50%,0,0); /* centered horizontally by default */
-  will-change: transform;
-  user-select: none;
+  transform: translateX(-50%);
+  width: clamp(300px, 40vw, 600px);  /* make it larger */
+  top: calc(100% - 120px);           /* adjust this to set how much it overlaps the next section */
+  z-index: 5;
   pointer-events: none;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,.25));
+  user-select: none;
+  will-change: transform;
+  transition: transform 0.2s ease-out;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.3));
 }
 
-/* The fish: tune size & anchor */
-.plx-fish{
-  width: clamp(200px, 28vw, 520px);
-  /* Start a little above the middle, tweak as you like: */
-  top: 20vh;
-}
-
-/* Prefer-reduced-motion: stop parallax */
-@media (prefers-reduced-motion: reduce){
-  .plx-layer{
-    transform: translate3d(-50%,0,0) !important;
-    will-change: auto;
+/* mobile: smaller and anchored */
+@media (max-width: 768px) {
+  .parallax-fish {
+    width: 70vw;
+    top: calc(100% - 80px);
   }
 }
-
