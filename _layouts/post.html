@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>{{ page.title }} – {{ site.title }}</title>
 
-    <!-- Basic meta -->
     <meta name="description" content="{{ page.summary | default: page.excerpt | strip_html | truncate: 160 }}">
     <meta name="author" content="{{ page.author | default: site.author }}">
 
@@ -28,9 +27,7 @@
                   <li><a href="{{ '/posts/' | relative_url }}">Field Notes &amp; Research</a></li>
                   <li><a href="{{ '/about/' | relative_url }}">About</a></li>
                   <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
-                  <li>
-                    <button id="open-search" type="button" style="width:100%;" onclick="window.__openSearch && window.__openSearch()">Search</button>
-                  </li>
+                  <li><button id="open-search" type="button" style="width:100%;" onclick="window.__openSearch && window.__openSearch()">Search</button></li>
                 </ul>
               </div>
             </li>
@@ -40,8 +37,6 @@
 
       <!-- Main -->
       <article id="main">
-
-        <!-- Post header (Spectral style) -->
         <header>
           <h2>{{ page.title }}</h2>
           <p class="post-sub">
@@ -51,17 +46,60 @@
           </p>
         </header>
 
-        <!-- Content band -->
         <section class="wrapper alt style2">
-          <div class="inner">
-
+          <div class="inner post">
             {% if page.image %}
-            <span class="image fit" style="margin-bottom:1.5rem;">
-              <img src="{{ page.image | relative_url }}" alt="">
-            </span>
+              <figure class="post-hero">
+                <img src="{{ page.image | relative_url }}" alt="">
+              </figure>
             {% endif %}
 
-            <!-- Tags -->
             {% if page.tags %}
-            <div class="post-tags">
-              {% for t
+              <div class="post-tags">
+                {% for t in page.tags %}
+                  <a href="{{ '/tag/' | append: t | slugify | append: '/' | relative_url }}">#{{ t }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <div class="post-body">
+              {{ content }}
+            </div>
+
+            <nav class="post-nav">
+              <div>
+                {% if page.previous %}<a class="button small" href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
+              </div>
+              <div>
+                {% if page.next %}<a class="button small" href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
+              </div>
+            </nav>
+          </div>
+        </section>
+      </article>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <ul class="icons">
+          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank" rel="noopener"><span class="label">ORCiD</span></a></li>
+          <li><a href="https://github.com/" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+          <li><a href="mailto:info@untitled.tld" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</li>
+          <li>All views expressed are my own</li>
+        </ul>
+      </footer>
+
+    </div>
+
+    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    {% include search.html %}
+  </body>
+</html>
