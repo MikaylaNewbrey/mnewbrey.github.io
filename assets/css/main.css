@@ -4534,25 +4534,6 @@ section.posts .actions.special { margin-top: 1rem; }
 /* Reveal label on hover */
 .icons.major li:hover .label{ opacity:1; }
 
-/* === Floating parallax fish between sections === */
-.parallax-fish {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(300px, 40vw, 600px);  /* make it larger */
-  top: calc(100% - 120px);           /* adjust this to set how much it overlaps the next section */
-  z-index: 5;
-  pointer-events: none;
-  user-select: none;
-  will-change: transform;
-  transition: transform 0.2s ease-out;
-  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.3));
-}
 
-/* mobile: smaller and anchored */
-@media (max-width: 768px) {
-  .parallax-fish {
-    width: 70vw;
-    top: calc(100% - 80px);
   }
 }
