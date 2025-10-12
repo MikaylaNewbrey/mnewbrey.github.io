@@ -4516,3 +4516,14 @@ section.posts .actions.special { margin-top: 1rem; }
 .icons.major .fa-dna:before   { color:#5fffd2 !important; }
 .icons.major .fa-water:before { color:#58caff !important; }
 .icons.major .fa-fish:before  { color:#4dbaff !important; }
+
+/* === Straighten the hover text under diamonds === */
+
+/* Reset rotation so text stays horizontal even though the diamond is rotated */
+.icons.major li .label {
+  transform: translateX(-50%) rotate(-45deg) rotate(45deg) !important;
+  /* translation cancels Spectral’s parent rotation */
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
