@@ -4464,13 +4464,12 @@ section.posts .actions.special { margin-top: 1rem; }
 #nav .nav-icon:hover svg { opacity: 1; }
 
 
+/* === Research Focus: show label BELOW the diamond on hover === */
 
-/* === Research Focus: label appears BELOW the diamond on hover === */
-
-/* Make each icon's list item the positioning anchor */
+/* Each icon's <li> becomes the positioning anchor */
 .icons.major li { position: relative; }
 
-/* Keep your existing hover blur/dim (safe if already present) */
+/* Keep your existing dim/blur effect on hover */
 .icon.major:before { transition: opacity .25s ease; }
 .icon.major:hover:before { opacity: .35; }
 .icon.major::after{
@@ -4479,31 +4478,29 @@ section.posts .actions.special { margin-top: 1rem; }
   background:rgba(255,255,255,0.10);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  opacity:0;
-  transition:opacity .25s ease;
+  opacity:0; transition:opacity .25s ease;
   border-radius:3px;
 }
 .icon.major:hover::after{ opacity:1; }
 
-/* NEW: the label sits just below the diamond, hidden until hover */
+/* UNHIDE the Spectral "visually hidden" label and place it below */
 .icons.major li .label{
+  display: block !important;                 
   position: absolute !important;
   left: 50% !important;
-  top: calc(100% + 0.55rem) !important;     /* a touch below the diamond */
-  transform: translate(-50%, -6px) !important;
+  top: calc(100% + 0.55rem) !important;      /* distance below diamond */
+  transform: translateX(-50%) !important;    /* no rotation */
   opacity: 0 !important;
-  transition: opacity .2s ease, transform .2s ease !important;
+  transition: opacity .2s ease !important;
 
-  /* ensure Spectral's visually-hidden rules are undone */
-  clip: auto !important;
-  clip-path: none !important;
+  /* undo Spectral's hiding */
+  clip: auto !important; clip-path: none !important;
   width: auto !important; height: auto !important;
   overflow: visible !important; margin: 0 !important;
   border: 0 !important; text-indent: 0 !important;
-  white-space: nowrap !important;
-  pointer-events: none !important;
+  white-space: nowrap !important; pointer-events: none !important;
 
-  /* visual: same tone as your section subtitle */
+  /* visual: match subtitle tone */
   color: rgba(255,255,255,0.70) !important;
   font-weight: 600 !important;
   letter-spacing: .06em !important;
@@ -4513,10 +4510,9 @@ section.posts .actions.special { margin-top: 1rem; }
 
 .icons.major li:hover .label{
   opacity: 1 !important;
-  transform: translate(-50%, 0) !important;
 }
 
-/* Keep per-icon colors (glyphs are on :before) */
+/* Keep per-icon colors (glyphs render via :before) */
 .icons.major .fa-dna:before   { color:#5fffd2 !important; }
 .icons.major .fa-water:before { color:#58caff !important; }
 .icons.major .fa-fish:before  { color:#4dbaff !important; }
