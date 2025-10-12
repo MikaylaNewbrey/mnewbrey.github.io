@@ -79,9 +79,14 @@ section: Home
   </div>
 </section>
 
-      <!-- Parallax fish break -->
-<section class="plx-wrap" aria-hidden="true">
-  <div class="plx-canvas">
+<!-- Floating fish parallax layer -->
+<img 
+  src="{{ '/assets/images/bsb-newbrey.png' | relative_url }}" 
+  alt="Black sea bass illustration"
+  class="parallax-fish"
+  data-speed="0.3"
+/>
+
     <!-- You can add more layers later; each gets its own data-speed -->
     <img
       src="{{ '/assets/images/bsb-newbrey.png' | relative_url }}"
@@ -207,6 +212,7 @@ section: Home
     {% include search.html %}
   </body>
 </html>
+
 
 
 
