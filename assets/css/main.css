@@ -4514,3 +4514,56 @@ section.posts .actions.special { margin-top: 1rem; }
   line-height: 1.2 !important;
 }
 
+/* ===== Research Focus: tidy vertical stack with subtle hover label ===== */
+
+/* 1) Lay out each item as a centered column */
+.icons.major {
+  display: flex;
+  gap: 3rem;                      /* space between diamonds */
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.icons.major li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .6rem;                     /* space between diamond and label */
+}
+
+/* 2) Diamond + icon behavior (keep your nice dim-on-hover) */
+.icon.major:before { transition: opacity .25s ease; }
+.icon.major:hover:before { opacity: .35; }
+.icon.major::after { content: none !important; }   /* no blur */
+
+/* Per-icon colors (glyphs render via :before) */
+.icons.major .fa-dna:before   { color:#5fffd2 !important; }
+.icons.major .fa-water:before { color:#58caff !important; }
+.icons.major .fa-fish:before  { color:#4dbaff !important; }
+
+/* 3) Label: reserve space, then fade in on hover (no slant, no jump) */
+.icons.major li .label{
+  min-height: 1.2em;             /* reserve space so layout doesn’t shift */
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
+
+  /* match your subtitle tone */
+  color: rgba(255,255,255,0.72);
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: none;
+  font-size: .95rem;
+  text-align: center;
+}
+
+/* reveal label on hover of the item or the diamond */
+.icons.major li:hover .label,
+.icons.major li .icon.major:hover + .label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
