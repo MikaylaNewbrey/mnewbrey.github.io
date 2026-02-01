@@ -61,12 +61,15 @@ layout: none
               <div id="menu">
                 <ul>
                   <li><a href="{{ '/' | relative_url }}">Home</a></li>
-                  <li><a href="{{ '/posts/' | relative_url }}">Commonplace Journal</a></li>
+                  <li><a href="{{ '/journal/' | relative_url }}">Commonplace Journal</a></li>
+                  <li><a href="{{ '/posts/' | relative_url }}">The Latest</a></li>
+                  <li><a href="{{ '/science/' | relative_url }}">Science in Action</a></li>
                   <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-                  <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li 
-                  <li><a href="{{ '/science/' | relative_url }}">News</a></li>
                   <li>
-                    <button id="open-search" type="button" style="width:100%;" onclick="window.__openSearch && window.__openSearch()">Search</button>
+                    <button id="open-search" type="button" style="width:100%;"
+                      onclick="window.__openSearch && window.__openSearch()">
+                      Search
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -76,10 +79,11 @@ layout: none
       </header>
 
       <!-- Banner -->
-      <section id="banner" style="background-image:url('{{ '/images/backgrounds/krisztian-tabori-91hGAhPmKrY-unsplash.jpg' | relative_url }}');">
+      <section id="banner"
+        style="background-image:url('{{ '/images/backgrounds/krisztian-tabori-91hGAhPmKrY-unsplash.jpg' | relative_url }}');">
         <div class="inner">
           <h2>The Latest</h2>
-          <p>A collection of notes on research, ideas, and inspiration.</p>
+          <p>Announcements, milestones, and notable updates from ongoing work.</p>
         </div>
         <a href="#posts" class="more scrolly">Browse</a>
       </section>
@@ -114,13 +118,36 @@ layout: none
       <!-- Footer -->
       <footer id="footer">
         <ul class="icons">
-          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank" rel="noopener"><span class="label">ORCiD</span></a></li>
-          <li><a href="https://github.com/" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
-          <li><a href="mailto:info@untitled.tld" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+          <li>
+            <a href="https://orcid.org/0009-0008-1202-4962"
+               class="icon brands fa-orcid"
+               target="_blank" rel="noopener">
+              <span class="label">ORCiD</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/"
+               class="icon brands fa-github"
+               target="_blank" rel="noopener">
+              <span class="label">GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@untitled.tld"
+               class="icon solid fa-envelope">
+              <span class="label">Email</span>
+            </a>
+          </li>
         </ul>
+
         <ul class="copyright">
           <li>&copy; {{ site.time | date: '%Y' }} Mikayla Newbrey</li>
-          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank" rel="noopener">UMass Amherst, OEB</a></li>
+          <li>
+            <a href="https://www.umass.edu/organismic-evolutionary/"
+               target="_blank" rel="noopener">
+              UMass Amherst, OEB
+            </a>
+          </li>
           <li>All views expressed are my own</li>
         </ul>
       </footer>
