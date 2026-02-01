@@ -2,10 +2,11 @@
 layout: post
 title: "Setting Up the Commonplace Journal"
 subtitle: "Notes on structure, purpose, and use"
-date: 2026-2-02
+date: 2026-02-02
 author: "M. Newbrey"
-tags: [commonplace, notes, methods, research-practice]
-summary: "A brief note on how this journal is structured and how entries here are meant to function."
+categories: [journal]
+tags: [commonplace, notes, methods]
+summary: "A brief note on how this journal is structured and how entries are meant to function."
 toc: true
 ---
 
