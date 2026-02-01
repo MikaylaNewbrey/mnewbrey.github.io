@@ -86,14 +86,14 @@ layout: none
         <a href="#posts" class="more scrolly">Browse</a>
       </section>
 
-      <<!-- News Posts -->
+      <!-- News Posts -->
 <section id="posts" class="wrapper alt style2">
   <div class="inner">
 
     {% assign news_posts = site.categories.news %}
 
-    {% if news_posts and news_posts.size > 0 %}
-      {% assign news_posts = news_posts | sort: 'date' | reverse %}
+    {% if news_posts %}
+      {% assign news_posts = news_posts | sort: "date" | reverse %}
       {% for post in news_posts %}
         <article class="journal-entry">
           <header>
