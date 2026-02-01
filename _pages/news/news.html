@@ -14,7 +14,6 @@ layout: none
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
 
     <style>
-      /* tighten vertical rhythm without redesign */
       #posts.wrapper {
         padding-top: 3rem;
         padding-bottom: 3rem;
@@ -26,6 +25,8 @@ layout: none
 
       .journal-entry {
         margin-bottom: 2.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        padding-bottom: 2rem;
       }
 
       .journal-entry h3 {
@@ -66,9 +67,7 @@ layout: none
                   <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
                   <li>
                     <button id="open-search" type="button" style="width:100%;"
-                      onclick="window.__openSearch && window.__openSearch()">
-                      Search
-                    </button>
+                      onclick="window.__openSearch && window.__openSearch()">Search</button>
                   </li>
                 </ul>
               </div>
@@ -87,12 +86,12 @@ layout: none
         <a href="#posts" class="more scrolly">Browse</a>
       </section>
 
-      <!-- Posts -->
+      <!-- News Posts -->
       <section id="posts" class="wrapper alt style2">
         <div class="inner">
 
-          {% assign all_posts = site.posts | sort: 'date' | reverse %}
-          {% for post in all_posts %}
+          {% assign news_posts = site.categories.news | sort: 'date' | reverse %}
+          {% for post in news_posts %}
           <article class="journal-entry">
             <header>
               <h3>
@@ -104,12 +103,16 @@ layout: none
             </header>
 
             <p class="excerpt">
-              {{ post.description | default: post.summary | default: post.excerpt | strip_html | truncate: 220 }}
+              {{ post.summary | default: post.excerpt | strip_html | truncate: 220 }}
             </p>
 
             <a href="{{ post.url | relative_url }}" class="button small">Read more</a>
           </article>
           {% endfor %}
+
+          {% if news_posts == empty %}
+            <p>No news posts yet.</p>
+          {% endif %}
 
         </div>
       </section>
