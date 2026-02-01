@@ -14,7 +14,6 @@ layout: none
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
 
     <style>
-      /* tighten vertical rhythm without redesign */
       #posts.wrapper {
         padding-top: 3rem;
         padding-bottom: 3rem;
@@ -26,6 +25,8 @@ layout: none
 
       .journal-entry {
         margin-bottom: 2.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        padding-bottom: 2rem;
       }
 
       .journal-entry h3 {
@@ -65,7 +66,8 @@ layout: none
                   <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
                   <li><a href="{{ '/news/' | relative_url }}">News</a></li>
                   <li>
-                    <button id="open-search" type="button" style="width:100%;" onclick="window.__openSearch && window.__openSearch()">Search</button>
+                    <button id="open-search" type="button" style="width:100%;"
+                      onclick="window.__openSearch && window.__openSearch()">Search</button>
                   </li>
                 </ul>
               </div>
@@ -75,20 +77,21 @@ layout: none
       </header>
 
       <!-- Banner -->
-      <section id="banner" style="background-image:url('{{ '/images/backgrounds/krisztian-tabori-91hGAhPmKrY-unsplash.jpg' | relative_url }}');">
+      <section id="banner"
+        style="background-image:url('{{ '/images/backgrounds/krisztian-tabori-91hGAhPmKrY-unsplash.jpg' | relative_url }}');">
         <div class="inner">
           <h2>Commonplace Journal</h2>
-          <p>A collection of notes on research, ideas, and inspiration.</p>
+          <p>A collection of notes on research, observation, and working ideas.</p>
         </div>
         <a href="#posts" class="more scrolly">Browse</a>
       </section>
 
-      <!-- Posts -->
+      <!-- Journal Posts -->
       <section id="posts" class="wrapper alt style2">
         <div class="inner">
 
-          {% assign all_posts = site.posts | sort: 'date' | reverse %}
-          {% for post in all_posts %}
+          {% assign journal_posts = site.categories.journal | sort: 'date' | reverse %}
+          {% for post in journal_posts %}
           <article class="journal-entry">
             <header>
               <h3>
@@ -100,12 +103,16 @@ layout: none
             </header>
 
             <p class="excerpt">
-              {{ post.description | default: post.summary | default: post.excerpt | strip_html | truncate: 220 }}
+              {{ post.summary | default: post.excerpt | strip_html | truncate: 220 }}
             </p>
 
             <a href="{{ post.url | relative_url }}" class="button small">Read more</a>
           </article>
           {% endfor %}
+
+          {% if journal_posts == empty %}
+            <p>No journal entries yet.</p>
+          {% endif %}
 
         </div>
       </section>
@@ -113,13 +120,14 @@ layout: none
       <!-- Footer -->
       <footer id="footer">
         <ul class="icons">
-          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank" rel="noopener"><span class="label">ORCiD</span></a></li>
-          <li><a href="https://github.com/MikaylaNewbrey" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank"><span class="label">ORCiD</span></a></li>
+          <li><a href="https://github.com/MikaylaNewbrey" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
           <li><a href="mailto:mikaylanewbrey@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
         </ul>
+
         <ul class="copyright">
           <li>&copy; {{ site.time | date: '%Y' }} Mikayla Newbrey</li>
-          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank" rel="noopener">UMass Amherst, OEB</a></li>
+          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">UMass Amherst, OEB</a></li>
           <li>All views expressed are my own</li>
         </ul>
       </footer>
