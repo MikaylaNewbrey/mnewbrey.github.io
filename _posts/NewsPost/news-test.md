@@ -2,7 +2,7 @@
 layout: post
 title: "Site Launch and First Updates"
 subtitle: "Notes on recent changes and milestones"
-date: 2026-02-02
+date: 2026-02-01
 author: "M. Newbrey"
 categories: [news]
 tags: [updates, milestones]
