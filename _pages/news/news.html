@@ -1,0 +1,140 @@
+---
+title: The Latest
+permalink: /posts/
+layout: none
+---
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{{ page.title }} – {{ site.title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
+
+    <style>
+      /* tighten vertical rhythm without redesign */
+      #posts.wrapper {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+
+      #posts .inner {
+        margin-top: -1rem;
+      }
+
+      .journal-entry {
+        margin-bottom: 2.5rem;
+      }
+
+      .journal-entry h3 {
+        margin-bottom: 0.4rem;
+      }
+
+      .journal-entry p.meta {
+        font-size: 0.85em;
+        opacity: 0.6;
+        margin-bottom: 0.75rem;
+      }
+
+      .journal-entry p.excerpt {
+        margin-bottom: 0.75rem;
+      }
+
+      .button.small {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+
+  <body class="is-preload">
+    <div id="page-wrapper">
+
+      <!-- Header -->
+      <header id="header">
+        <h1><a href="{{ '/' | relative_url }}">Mikayla Newbrey</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                  <li><a href="{{ '/posts/' | relative_url }}">Commonplace Journal</a></li>
+                  <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+                  <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li 
+                  <li><a href="{{ '/science/' | relative_url }}">News</a></li>
+                  <li>
+                    <button id="open-search" type="button" style="width:100%;" onclick="window.__openSearch && window.__openSearch()">Search</button>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Banner -->
+      <section id="banner" style="background-image:url('{{ '/images/backgrounds/krisztian-tabori-91hGAhPmKrY-unsplash.jpg' | relative_url }}');">
+        <div class="inner">
+          <h2>The Latest</h2>
+          <p>A collection of notes on research, ideas, and inspiration.</p>
+        </div>
+        <a href="#posts" class="more scrolly">Browse</a>
+      </section>
+
+      <!-- Posts -->
+      <section id="posts" class="wrapper alt style2">
+        <div class="inner">
+
+          {% assign all_posts = site.posts | sort: 'date' | reverse %}
+          {% for post in all_posts %}
+          <article class="journal-entry">
+            <header>
+              <h3>
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h3>
+              <p class="meta">
+                {{ post.date | date: "%B %d, %Y" }}
+              </p>
+            </header>
+
+            <p class="excerpt">
+              {{ post.description | default: post.summary | default: post.excerpt | strip_html | truncate: 220 }}
+            </p>
+
+            <a href="{{ post.url | relative_url }}" class="button small">Read more</a>
+          </article>
+          {% endfor %}
+
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <ul class="icons">
+          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank" rel="noopener"><span class="label">ORCiD</span></a></li>
+          <li><a href="https://github.com/" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+          <li><a href="mailto:info@untitled.tld" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; {{ site.time | date: '%Y' }} Mikayla Newbrey</li>
+          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank" rel="noopener">UMass Amherst, OEB</a></li>
+          <li>All views expressed are my own</li>
+        </ul>
+      </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    {% include search.html %}
+  </body>
+</html>
