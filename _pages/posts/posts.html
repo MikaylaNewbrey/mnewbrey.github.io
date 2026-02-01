@@ -14,12 +14,12 @@ layout: none
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
   </head>
 
-  <body class="landing is-preload">
+  <body class="is-preload">
     <div id="page-wrapper">
 
-      <!-- Header -->
-      <header id="header" class="alt">
-        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+      <!-- Header (MATCHES ABOUT PAGE) -->
+      <header id="header">
+        <h1><a href="{{ '/' | relative_url }}">Mikayla Newbrey</a></h1>
         <nav id="nav">
           <ul>
             <li class="special">
@@ -44,7 +44,7 @@ layout: none
       <section id="banner" style="background-image:url('{{ '/images/backgrounds/krisztian-tabori-91hGAhPmKrY-unsplash.jpg' | relative_url }}');">
         <div class="inner">
           <h2>Commonplace Journal</h2>
-          <p>Browse the full archive of posts.</p>
+          <p>A collection of notes on research, ideas, and inspiration.</p>
         </div>
         <a href="#posts" class="more scrolly">Browse</a>
       </section>
@@ -103,4 +103,3 @@ layout: none
     {% include search.html %}
   </body>
 </html>
-
