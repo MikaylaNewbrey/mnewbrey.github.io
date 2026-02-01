@@ -4,6 +4,7 @@ permalink: /
 layout: none
 section: Home
 ---
+
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -15,12 +16,10 @@ section: Home
 
     <style>
       /* --- Research Focus icon labels: force below icons, no overlap --- */
-
       .icons.major li {
         position: relative;
       }
 
-      /* Override theme label placement */
       .icons.major .label {
         position: static;
         display: block;
@@ -30,7 +29,6 @@ section: Home
         transition: opacity 0.25s ease;
       }
 
-      /* Show label on hover */
       .icons.major li:hover .label {
         opacity: 1;
       }
@@ -51,9 +49,10 @@ section: Home
               <div id="menu">
                 <ul>
                   <li><a href="{{ '/' | relative_url }}">Home</a></li>
-                  <li><a href="{{ '/posts/' | relative_url }}">Commonplace Journal</a></li>
+                  <li><a href="{{ '/journal/' | relative_url }}">Commonplace Journal</a></li>
+                  <li><a href="{{ '/posts/' | relative_url }}">The Latest</a></li>
+                  <li><a href="{{ '/science/' | relative_url }}">Science in Action</a></li>
                   <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-                  <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
                   <li>
                     <button id="open-search" type="button" style="width:100%;"
                       onclick="window.__openSearch && window.__openSearch()">Search</button>
@@ -71,7 +70,7 @@ section: Home
           <h2>Mikayla Newbrey</h2>
           <p>PhD student in Organismal and Evolutionary Biology.</p>
           <ul class="actions special">
-            <li><a href="{{ '/posts/' | relative_url }}" class="button primary">Explore my work</a></li>
+            <li><a href="{{ '/posts/' | relative_url }}" class="button primary">Explore the latest</a></li>
             <li><a href="{{ '/about/' | relative_url }}" class="button">About</a></li>
           </ul>
         </div>
@@ -105,65 +104,34 @@ section: Home
 
       <!-- Spotlights -->
       <section id="two" class="wrapper alt style2">
+
         <section class="spotlight">
-          <div class="image"><img src="{{ 'images/backgrounds/krisztian-tabori-91hGAhPmKrY-unsplash.jpg' | relative_url }}" alt="" /></div>
+          <div class="image">
+            <img src="{{ 'images/backgrounds/krisztian-tabori-91hGAhPmKrY-unsplash.jpg' | relative_url }}" alt="" />
+          </div>
           <div class="content">
             <h2>Commonplace Journal</h2>
             <p>A collection of notes on research, observation, and inspiration drawn from the natural world.</p>
             <ul class="actions">
-              <li><a href="{{ '/posts/' | relative_url }}" class="button">Explore Entries</a></li>
+              <li><a href="{{ '/journal/' | relative_url }}" class="button">Explore entries</a></li>
             </ul>
           </div>
         </section>
 
         <section class="spotlight">
-          <div class="image"><img src="{{ 'images/backgrounds/paxton-tomko-4HOg7XW_9co-unsplash.jpg' | relative_url }}" alt="" /></div>
+          <div class="image">
+            <img src="{{ 'images/backgrounds/paxton-tomko-4HOg7XW_9co-unsplash.jpg' | relative_url }}" alt="" />
+          </div>
           <div class="content">
-            <h2>Science In Action</h2>
-            <p>Snapshots of science behind the scenes.</p>
+            <h2>Science in Action</h2>
+            <p>Field and lab documentation from ongoing work.</p>
             <ul class="actions">
-              <li><a href="{{ '/science/' | relative_url }}" class="button">View the Gallery</a></li>
+              <li><a href="{{ '/science/' | relative_url }}" class="button">View the gallery</a></li>
             </ul>
           </div>
         </section>
 
         <section class="spotlight">
-          <div class="image"><img src="{{ 'images/backgrounds/nathan-anderson-nuN4_Y_P0j0-unsplash.jpg' | relative_url }}" alt="" /></div>
-          <div class="content">
-            <h2>Latest News</h2>
-            <p>Recent happenings, events, and announcements.</p>
-            <ul class="actions">
-              <li><a href="{{ '/pastry-lab/' | relative_url }}" class="button">Catch the Latest</a></li>
-            </ul>
+          <div class="image">
+            <img src="{{ 'images/backgrounds/nathan-anderson-nuN4_Y_P0j0-unsplash.jpg' | relative_url }}" alt="" />
           </div>
-        </section>
-      </section>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <ul class="icons">
-          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank"><span class="label">ORCiD</span></a></li>
-          <li><a href="https://github.com/" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
-          <li><a href="mailto:info@untitled.tld" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; {{ site.time | date: '%Y' }} Mikayla Newbrey</li>
-          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">UMass Amherst, OEB</a></li>
-          <li>All Views Expressed Are My Own</li>
-        </ul>
-      </footer>
-
-    </div>
-
-    <!-- Scripts -->
-    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-    {% include search.html %}
-  </body>
-</html>
-
