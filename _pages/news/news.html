@@ -86,36 +86,38 @@ layout: none
         <a href="#posts" class="more scrolly">Browse</a>
       </section>
 
-      <!-- News Posts -->
-      <section id="posts" class="wrapper alt style2">
-        <div class="inner">
+      <<!-- News Posts -->
+<section id="posts" class="wrapper alt style2">
+  <div class="inner">
 
-          {% assign news_posts = site.categories.news | sort: 'date' | reverse %}
-          {% for post in news_posts %}
-          <article class="journal-entry">
-            <header>
-              <h3>
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              </h3>
-              <p class="meta">
-                {{ post.date | date: "%B %d, %Y" }}
-              </p>
-            </header>
+    {% assign news_posts = site.categories.news %}
 
-            <p class="excerpt">
-              {{ post.summary | default: post.excerpt | strip_html | truncate: 220 }}
+    {% if news_posts and news_posts.size > 0 %}
+      {% assign news_posts = news_posts | sort: 'date' | reverse %}
+      {% for post in news_posts %}
+        <article class="journal-entry">
+          <header>
+            <h3>
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <p class="meta">
+              {{ post.date | date: "%B %d, %Y" }}
             </p>
+          </header>
 
-            <a href="{{ post.url | relative_url }}" class="button small">Read more</a>
-          </article>
-          {% endfor %}
+          <p class="excerpt">
+            {{ post.summary | default: post.excerpt | strip_html | truncate: 220 }}
+          </p>
 
-          {% if news_posts == empty %}
-            <p>No news posts yet.</p>
-          {% endif %}
+          <a href="{{ post.url | relative_url }}" class="button small">Read more</a>
+        </article>
+      {% endfor %}
+    {% else %}
+      <p>No news posts yet.</p>
+    {% endif %}
 
-        </div>
-      </section>
+  </div>
+</section>
 
       <!-- Footer -->
       <footer id="footer">
