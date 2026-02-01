@@ -4,7 +4,7 @@ title: "Site Launch and First Updates"
 subtitle: "Notes on recent changes and milestones"
 date: 2026-02-02
 author: "M. Newbrey"
-categories: [news]
+category: [news]
 tags: [updates, milestones]
 summary: "A brief update on recent developments and announcements."
 toc: false
