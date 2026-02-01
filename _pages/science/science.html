@@ -9,36 +9,39 @@ layout: none
   <head>
     <title>{{ page.title }} – {{ site.title }}</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
 
     <style>
-      .science-intro {
-        max-width: 48rem;
-        margin: 0 auto 3rem auto;
-        opacity: 0.85;
-      }
-
       .science-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2.5rem;
       }
 
-      .science-item h3 {
-        font-size: 0.95rem;
-        margin: 0.6rem 0 0.25rem 0;
+      .science-plate img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
 
-      .science-item p {
+      .science-plate figcaption {
+        margin-top: 0.6rem;
         font-size: 0.85rem;
-        opacity: 0.7;
-        margin: 0;
+        opacity: 0.75;
+        line-height: 1.4;
       }
 
-      /* Lightbox */
+      .science-plate strong {
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+
       .lb {
         position: fixed;
         inset: 0;
@@ -50,15 +53,14 @@ layout: none
       }
 
       .lb-inner {
-        max-width: 90vw;
+        max-width: 92vw;
         max-height: 88vh;
         padding: 1rem;
-        text-align: center;
       }
 
       .lb img {
         max-width: 100%;
-        max-height: 78vh;
+        max-height: 80vh;
         display: block;
         margin: 0 auto;
       }
@@ -66,8 +68,8 @@ layout: none
       .lb-cap {
         color: #fff;
         margin-top: 0.75rem;
-        font-size: 0.9rem;
-        opacity: 0.85;
+        text-align: center;
+        opacity: 0.9;
       }
 
       .lb-close {
@@ -77,18 +79,18 @@ layout: none
         background: #fff;
         padding: 0.4rem 0.6rem;
         border-radius: 0.4rem;
-        font-size: 0.75rem;
         cursor: pointer;
+        font-size: 0.8rem;
       }
     </style>
   </head>
 
-  <body class="landing is-preload">
+  <body class="is-preload">
     <div id="page-wrapper">
 
       <!-- Header -->
-      <header id="header" class="alt">
-        <h1><a href="{{ '/' | relative_url }}">Mikayla Newbrey</a></h1>
+      <header id="header">
+        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
         <nav id="nav">
           <ul>
             <li class="special">
@@ -100,8 +102,7 @@ layout: none
                   <li><a href="{{ '/about/' | relative_url }}">About</a></li>
                   <li><a href="{{ '/science/' | relative_url }}">Science in Action</a></li>
                   <li>
-                    <button id="open-search" type="button" style="width:100%;"
-                      onclick="window.__openSearch && window.__openSearch()">Search</button>
+                    <button id="open-search" type="button" style="width:100%;" onclick="window.__openSearch && window.__openSearch()">Search</button>
                   </li>
                 </ul>
               </div>
@@ -110,78 +111,53 @@ layout: none
         </nav>
       </header>
 
-      <!-- Banner -->
-      <section id="banner">
-        <div class="inner">
-          <h2>Science in Action</h2>
-          <p>Field and laboratory documentation from ongoing research.</p>
-        </div>
-        <a href="#content" class="more scrolly">Browse</a>
-      </section>
-
       <!-- Main -->
-      <section id="content" class="wrapper alt style2">
-        <div class="inner">
+      <article id="main">
+        <header>
+          <h2>Science in Action</h2>
+          <p>Field and lab documentation from ongoing work.</p>
+        </header>
 
-          {% if site.data.gallery and site.data.gallery.size > 0 %}
-          <div class="science-grid">
-            {% for item in site.data.gallery %}
-            <div class="science-item">
-              <a href="{{ item.file | relative_url }}" class="image fit js-lb"
-                 data-cap="{{ item.title }} — {{ item.caption }}">
-                <img src="{{ item.file | relative_url }}" alt="{{ item.title }}">
-              </a>
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.caption }}</p>
+        <section class="wrapper alt style2">
+          <div class="inner">
+
+            {% if site.data.gallery and site.data.gallery.size > 0 %}
+            <div class="science-grid">
+              {% for item in site.data.gallery %}
+              <figure class="science-plate">
+                <a href="{{ item.file | relative_url }}" class="js-lb" data-cap="{{ item.title }} — {{ item.caption }}">
+                  <img src="{{ item.file | relative_url }}" alt="{{ item.title }}">
+                </a>
+                <figcaption>
+                  <strong>{{ item.title }}</strong>
+                  <span>{{ item.caption }}</span>
+                </figcaption>
+              </figure>
+              {% endfor %}
             </div>
-            {% endfor %}
-          </div>
-          {% else %}
-            <p>No entries yet. Add items to <code>_data/gallery.yml</code>.</p>
-          {% endif %}
+            {% else %}
+            <p>No images yet. Add entries to <code>_data/gallery.yml</code>.</p>
+            {% endif %}
 
-        </div>
-      </section>
+          </div>
+        </section>
+      </article>
 
       <!-- Footer -->
       <footer id="footer">
         <ul class="icons">
-          <li>
-            <a href="https://orcid.org/0009-0008-1202-4962"
-               class="icon brands fa-orcid" target="_blank">
-              <span class="label">ORCiD</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/" class="icon brands fa-github" target="_blank">
-              <span class="label">GitHub</span>
-            </a>
-          </li>
-          <li>
-            <a href="mailto:info@untitled.tld" class="icon solid fa-envelope">
-              <span class="label">Email</span>
-            </a>
-          </li>
+          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank" rel="noopener"><span class="label">ORCiD</span></a></li>
+          <li><a href="https://github.com/" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+          <li><a href="mailto:info@untitled.tld" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
         </ul>
-
         <ul class="copyright">
           <li>&copy; {{ site.time | date: '%Y' }} Mikayla Newbrey</li>
-          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">
-            UMass Amherst, OEB</a></li>
+          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank" rel="noopener">UMass Amherst, OEB</a></li>
           <li>All views expressed are my own</li>
         </ul>
       </footer>
 
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
     <!-- Lightbox -->
     <script>
@@ -191,28 +167,37 @@ layout: none
         lb.innerHTML = `
           <div class="lb-inner">
             <div class="lb-close">Close</div>
-            <img id="lbImg" src="" alt="">
-            <div class="lb-cap" id="lbCap"></div>
+            <img src="" alt="">
+            <div class="lb-cap"></div>
           </div>`;
         document.body.appendChild(lb);
 
-        const lbImg = document.getElementById('lbImg');
-        const lbCap = document.getElementById('lbCap');
+        const img = lb.querySelector('img');
+        const cap = lb.querySelector('.lb-cap');
+        const close = lb.querySelector('.lb-close');
 
-        document.querySelectorAll('.js-lb').forEach(el => {
-          el.addEventListener('click', e => {
+        document.querySelectorAll('.js-lb').forEach(a => {
+          a.addEventListener('click', e => {
             e.preventDefault();
-            lbImg.src = el.href;
-            lbCap.textContent = el.dataset.cap || '';
+            img.src = a.href;
+            cap.textContent = a.dataset.cap || '';
             lb.style.display = 'flex';
           });
         });
 
-        lb.querySelector('.lb-close').onclick = () => lb.style.display = 'none';
-        lb.onclick = e => { if (e.target === lb) lb.style.display = 'none'; };
+        close.addEventListener('click', () => lb.style.display = 'none');
+        lb.addEventListener('click', e => { if (e.target === lb) lb.style.display = 'none'; });
       });
     </script>
 
+    <!-- Scripts -->
+    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/browser.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
     {% include search.html %}
   </body>
 </html>
