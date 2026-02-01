@@ -4,14 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ page.title }} – {{ site.title }}</title>
+
     <meta name="description" content="{{ page.summary | default: page.excerpt | strip_html | truncate: 160 }}">
+
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}"></noscript>
+    <noscript>
+      <link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}">
+    </noscript>
   </head>
+
   <body class="is-preload">
     <div id="page-wrapper">
 
-      <!-- Header (keeps your slide-in menu + search) -->
+      <!-- Header -->
       <header id="header">
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
         <nav id="nav">
@@ -25,7 +30,12 @@
                   <li><a href="{{ '/posts/' | relative_url }}">Commonplace Journal</a></li>
                   <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
                   <li><a href="{{ '/news/' | relative_url }}">News</a></li>
-                  <li><button id="open-search" type="button" style="width:100%;" onclick="window.__openSearch && window.__openSearch()">Search</button></li>
+                  <li>
+                    <button id="open-search" type="button" style="width:100%;"
+                      onclick="window.__openSearch && window.__openSearch()">
+                      Search
+                    </button>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -33,21 +43,25 @@
         </nav>
       </header>
 
-      <!-- Hero banner: uses the post's front-matter image -->
-      {% if page.image %}
-      <section class="hero-post" style="background-image:url('{{ page.image | relative_url }}')"></section>
-      {% endif %}
-
       <!-- Main -->
       <article id="main">
-        <section class="wrapper alt style2">
-          <div class="inner post">
 
-            <!-- Engaging title/meta block BELOW the image -->
+        {% if page.image %}
+        <section class="hero-post"
+          style="background-image:url('{{ page.image | relative_url }}')">
+        </section>
+        {% endif %}
+
+        <section class="wrapper alt style2">
+          <div class="inner">
+
             <header class="post-head">
               <h1 class="post-title">{{ page.title }}</h1>
+
               <p class="post-sub">
-                <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+                <time datetime="{{ page.date | date_to_xmlschema }}">
+                  {{ page.date | date: "%B %d, %Y" }}
+                </time>
                 {% if page.author %} • {{ page.author }}{% endif %}
                 {% if page.subtitle %} • {{ page.subtitle }}{% endif %}
               </p>
@@ -55,35 +69,54 @@
               {% if page.tags %}
               <div class="post-tags">
                 {% for t in page.tags %}
-                  <a href="{{ '/tag/' | append: t | slugify | append: '/' | relative_url }}">#{{ t }}</a>
+                  <span>#{{ t }}</span>
                 {% endfor %}
               </div>
               {% endif %}
             </header>
 
-            <!-- Body -->
             <div class="post-body">
               {{ content }}
             </div>
 
-          <!-- Spacer to keep layout width without prev/next -->
-<div class="post-nav"></div>
-
+          </div>
+        </section>
+      </article>
 
       <!-- Footer -->
       <footer id="footer">
         <ul class="icons">
-          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank" rel="noopener"><span class="label">ORCiD</span></a></li>
-          <li><a href="https://github.com/" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
-          <li><a href="mailto:info@untitled.tld" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+          <li>
+            <a href="https://orcid.org/0009-0008-1202-4962"
+               class="icon brands fa-orcid"
+               target="_blank" rel="noopener">
+              <span class="label">ORCiD</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/"
+               class="icon brands fa-github"
+               target="_blank" rel="noopener">
+              <span class="label">GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@untitled.tld"
+               class="icon solid fa-envelope">
+              <span class="label">Email</span>
+            </a>
+          </li>
         </ul>
+
         <ul class="copyright">
           <li>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</li>
           <li>All views expressed are my own</li>
         </ul>
       </footer>
+
     </div>
 
+    <!-- Scripts -->
     <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
@@ -91,6 +124,7 @@
     <script src="{{ '/assets/js/breakpoints.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
     {% include search.html %}
   </body>
 </html>
