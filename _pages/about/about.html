@@ -16,19 +16,29 @@ section: About
   </head>
 
   <body class="is-preload">
+
+    <!-- Page Wrapper -->
     <div id="page-wrapper">
 
-      <!-- Header -->
+      <!-- Header (MATCHES HOME) -->
       <header id="header">
         <h1><a href="{{ '/' | relative_url }}">Mikayla Newbrey</a></h1>
         <nav id="nav">
           <ul>
-            <li><a href="{{ '/' | relative_url }}">Home</a></li>
-            <li><a href="{{ '/posts/' | relative_url }}">Field Notes &amp; Research</a></li>
-            <li class="active"><a href="{{ '/about/' | relative_url }}">About</a></li>
-            <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
-            <li>
-              <button id="open-search" type="button" onclick="window.__openSearch && window.__openSearch()">Search</button>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                  <li><a href="{{ '/posts/' | relative_url }}">Field Notes &amp; Research</a></li>
+                  <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+                  <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
+                  <li>
+                    <button id="open-search" type="button" style="width:100%;"
+                      onclick="window.__openSearch && window.__openSearch()">Search</button>
+                  </li>
+                </ul>
+              </div>
             </li>
           </ul>
         </nav>
@@ -43,7 +53,7 @@ section: About
             <p>Ecologist studying how organisms adapt to a changing world.</p>
           </header>
 
-          <!-- Intro -->
+          <!-- Intro spotlight -->
           <section class="spotlight">
             <div class="image">
               <img src="{{ '/images/Remus-Mikayla-CC.jpeg' | relative_url }}" alt="Mikayla and Remus" />
@@ -58,33 +68,33 @@ section: About
           <h3>My Path Into Science</h3>
           <p>I began my academic journey at <strong>Cape Cod Community College</strong>, where I participated in an internship program at the <strong>Woods Hole Oceanographic Institution</strong>.</p>
 
-          <p>After earning my associate degree, I transferred to the <strong>University of Massachusetts Amherst</strong> and joined the <a href="https://lmkomoroske.com" target="_blank" rel="noopener"><strong>Molecular Ecology &amp; Conservation Lab</strong></a> as an undergraduate researcher in 2022. After completing my bachelor’s degree in Biology, I continued in the lab as manager for Dr. Lisa Komoroske, supporting and leading a range of ecological and genomic research projects.</p>
+          <p>After earning my associate degree, I transferred to the <strong>University of Massachusetts Amherst</strong> and joined the <a href="https://lmkomoroske.com" target="_blank" rel="noopener"><strong>Molecular Ecology &amp; Conservation Lab</strong></a> as an undergraduate researcher in 2022.</p>
 
           <p>I am now pursuing my PhD in Organismal and Evolutionary Biology at UMass Amherst, where my research focuses on how marine organisms respond and adapt to environmental change.</p>
 
           <hr />
 
           <h3>My Research</h3>
-          <p>I study how life in the ocean adapts to change. My work integrates genetics, behavior, and environmental data to understand how temperature, oxygen, and other shifting conditions influence where marine species live, move, and persist.</p>
+          <p>I study how life in the ocean adapts to change by integrating genetics, behavior, and environmental data to understand how shifting conditions influence where species live and persist.</p>
 
           <hr />
 
           <h3>Outside the Lab</h3>
-          <p>When I’m not working with data or in the field, I’m usually experimenting in the kitchen. Baking is just lab work that smells better. Outside the kitchen, I spend time in the mountains exploring with my husband and our two dogs, Koji and Remus, who are constant reminders to stay curious and enjoy the process.</p>
+          <p>When I’m not working with data or in the field, I’m usually experimenting in the kitchen. Baking is just lab work that smells better. Outside the kitchen, I spend time in the mountains with my husband and our two dogs, Koji and Remus.</p>
 
         </div>
       </section>
 
-      <!-- Footer -->
+      <!-- Footer (same as Home) -->
       <footer id="footer">
         <ul class="icons">
-          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank" rel="noopener"><span class="label">ORCiD</span></a></li>
-          <li><a href="https://github.com/" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+          <li><a href="https://orcid.org/0009-0008-1202-4962" class="icon brands fa-orcid" target="_blank"><span class="label">ORCiD</span></a></li>
+          <li><a href="https://github.com/" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
           <li><a href="mailto:info@untitled.tld" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
         </ul>
         <ul class="copyright">
           <li>&copy; {{ site.time | date: '%Y' }} Mikayla Newbrey</li>
-          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank" rel="noopener">UMass Amherst, OEB</a></li>
+          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">UMass Amherst, OEB</a></li>
           <li>All Views Expressed Are My Own</li>
         </ul>
       </footer>
@@ -100,5 +110,6 @@ section: About
     <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
     {% include search.html %}
+
   </body>
 </html>
