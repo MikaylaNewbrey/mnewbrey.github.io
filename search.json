@@ -5,43 +5,42 @@ permalink: /search.json
 
 [
 {% assign all = site.pages | concat: site.posts %}
-{% assign items = "" | split: "" %}
+{% assign first = true %}
 
 {% for p in all %}
   {% unless p.exclude_from_search %}
     {% assign title = p.title | to_s | strip %}
     {% assign url = p.url | to_s | strip %}
+
     {% if title != "" and url != "" %}
-      {% assign items = items | push: p %}
+      {% unless first %},{% endunless %}
+      {
+        "title": {{ title | jsonify }},
+        "url": {{ url | relative_url | jsonify }},
+        "date": {% if p.date %}{{ p.date | date: "%Y-%m-%d" | jsonify }}{% else %}null{% endif %},
+        "tags": {{ p.tags | join: " " | jsonify }},
+        "content": {{ p.content | strip_html | normalize_whitespace | truncate: 4000 | jsonify }},
+        "kind": {% if p.collection == "posts" %}"post"{% else %}"page"{% endif %},
+        "section": {% if p.section %}
+                    {{ p.section | jsonify }}
+                  {% elsif p.collection == "posts" %}
+                    "Post"
+                  {% elsif p.url contains '/about/' %}
+                    "About"
+                  {% elsif p.url contains '/science/' %}
+                    "Science"
+                  {% elsif p.url contains '/news/' %}
+                    "News"
+                  {% elsif p.url contains '/posts/' %}
+                    "Commonplace Journal"
+                  {% elsif p.url contains '/cv/' %}
+                    "CV"
+                  {% else %}
+                    "Page"
+                  {% endif %}
+      }
+      {% assign first = false %}
     {% endif %}
   {% endunless %}
-{% endfor %}
-
-{% for p in items %}
-{
-  "title": {{ p.title | jsonify }},
-  "url": {{ p.url | relative_url | jsonify }},
-  "date": {{ p.date | date: "%Y-%m-%d" | jsonify }},
-  "tags": {{ p.tags | join: " " | jsonify }},
-  "content": {{ p.content | strip_html | normalize_whitespace | truncate: 4000 | jsonify }},
-  "kind": {% if p.collection == "posts" %}"post"{% else %}"page"{% endif %},
-  "section":
-    {% if p.section %}
-      {{ p.section | jsonify }}
-    {% elsif p.collection == "posts" %}
-      "Post"
-    {% elsif p.url contains '/about/' %}
-      "About"
-    {% elsif p.url contains '/science/' %}
-      "Science"
-    {% elsif p.url contains '/posts/' %}
-      "Commonplace Journal"
-    {% elsif p.url == '/' %}
-      "Home"
-    {% else %}
-      "Page"
-    {% endif %}
-}
-{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]
