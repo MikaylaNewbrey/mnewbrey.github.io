@@ -2,7 +2,7 @@
 layout: post
 title: "Setting Up the Commonplace Journal"
 subtitle: "Notes on structure, purpose, and use"
-date: 2026-02-02
+date: 2026-02-01
 author: "M. Newbrey"
 categories: [journal]
 tags: [commonplace, notes, methods]
