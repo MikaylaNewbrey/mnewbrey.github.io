@@ -6,139 +6,155 @@ section: About
 ---
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>About – Mikayla Newbrey</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
-  </head>
-  <body class="is-preload">
-    <div id="wrapper">
+<html lang="en">
+<head>
+  <title>About | Mikayla Newbrey</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
 
-      <!-- Header -->
-      <header id="header">
-        <a href="/" class="logo">Mikayla Newbrey</a>
-      </header>
+  <style>
+    .about-header {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
 
-      <!-- Nav -->
-       <nav id="nav">
+    .about-header h1 {
+      margin-bottom: 1rem;
+    }
+
+    .about-image img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 12px;
+      display: block;
+    }
+
+    @media (max-width: 980px) {
+      .about-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .about-image img {
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+
+<body class="is-preload">
+<div id="wrapper">
+
+  <!-- Header -->
+  <header id="header">
+    <a href="/" class="logo">Mikayla Newbrey</a>
+  </header>
+
+  <!-- Nav -->
+  <nav id="nav">
     <ul class="links">
       <li><a href="{{ '/posts/' | relative_url }}">Field Notes & Research</a></li>
       <li class="active"><a href="{{ '/about/' | relative_url }}">About</a></li>
       <li><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
     </ul>
 
-        <!-- Right: Search -->
-        <div style="display:flex;align-items:center;gap:1rem;">
-          <button id="open-search" type="button" aria-label="Open search"
-                  class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </button>
-        </div>
-      </nav>
-
-      <!-- Main -->
-      <div id="main">
-        <section class="post">
-          <header class="major">
-            <span class="date">September 29, 2029</span>
-            <h1>About<br />Me</h1>
-        <p><strong>Hey! I’m Mikayla</strong>, and I’m an ecologist driven by a curiosity of how animals adapt to a changing world. I grew up on Cape Cod, where fishing and boating first sparked my fascination with nature, long before I ever called it science.</p>
-
-          </header>
-
-          <div class="image main">
-            <img src="/images/Remus-Mikayla-CC.jpeg" alt="Mikayla and Remus" style="max-width: 500px; width: 90%; height: auto; display: block; margin: 2rem auto; border-radius: 12px;" />
-          </div>
-
-         <hr>
-
-  <h3>My Path Into Science</h3>
-  <p>I began my academic journey at <strong>Cape Cod Community College</strong>, where I participated in an internship program at the <strong>Woods Hole Oceanographic Institution</strong>.</p>
-
-  <p>After earning my associate degree, I transferred to the <strong>University of Massachusetts Amherst</strong> and joined the <a href="https://lmkomoroske.com" target="_blank"><strong>Molecular Ecology & Conservation Lab</strong></a> as an undergraduate researcher in 2022. After completing my bachelor’s degree in Biology, I continued in the lab as manager for Dr. Lisa Komoroske, leading projects and supporting a diverse range of ecological and genomic research.</p>
-  <p> I’m now pursuing my Ph.D. in Organismal and Evolutionary Biology at UMass Amherst with Dr. Komoroske, where my research continues to explore how marine organisms respond and adapt to environmental change.<p>
-  <hr>
-
-  <h3>My Research</h3>
-<p>I study how life in the ocean adapts to change. My work combines genetics, behavior, and environmental data to uncover how temperature, oxygen, and other shifting conditions influence where marine species live, move, and survive.</p>
-  <hr>
-
-  <h3>Outside the Lab</h3>
-  <p>When I’m not knee-deep in data or saltwater, I’m usually experimenting in my other lab, the kitchen. Baking really is just lab work that smells better. Outside the kitchen, I love going to the mountains to go exploring with my husband and our two dogs, Koji and Remus, who remind me daily to stay present, curious, and enjoy the process.</p>
-</section>
-        </section>
-      </div>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <section class="split contact">
-          <section class="alt">
-            <h3>Affiliation</h3>
-            <p><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">University of Massachusetts Amherst, OEB Program</a></p>
-          </section>
-          <section>
-            <h3>ORCiD</h3>
-            <p><a href="https://orcid.org/0009-0008-1202-4962" target="_blank">0009-0008-1202-4962</a></p>
-          </section>
-          <section>
-            <h3>Email</h3>
-            <p><a href="#">info@untitled.tld</a></p>
-          </section>
-          <section>
-            <h3>Social</h3>
-            <ul class="icons alt">
-              <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-            </ul>
-          </section>
-        </section>
-      </footer>
-
-      <!-- Copyright -->
-      <div id="copyright">
-        <ul>
-          <li>&copy; Mikayla Newbrey</li>
-          <li>All Views Expressed Are My Own</li>
-        </ul>
-      </div>
-
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button id="open-search" type="button" aria-label="Open search"
+        class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
     </div>
+  </nav>
 
-    <!-- Scripts -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/jquery.scrollex.min.js"></script>
-    <script src="/assets/js/jquery.scrolly.min.js"></script>
-    <script src="/assets/js/browser.min.js"></script>
-    <script src="/assets/js/breakpoints.min.js"></script>
-    <script src="/assets/js/util.js"></script>
-    <script src="/assets/js/main.js"></script>
+  <!-- Main -->
+  <div id="main">
+    <section class="post">
 
-    {% include search.html %}
-  </body>
+      <!-- About header -->
+      <header class="about-header">
+        <div class="about-text">
+          <h1>About Me</h1>
+          <p><strong>Hey, I’m Mikayla.</strong> I’m an ecologist driven by a curiosity about how animals adapt to a changing world. I grew up on Cape Cod, where fishing and boating first sparked my fascination with nature, long before I ever called it science.</p>
+        </div>
+
+        <div class="about-image">
+          <img src="/images/Remus-Mikayla-CC.jpeg" alt="Mikayla and Remus" />
+        </div>
+      </header>
+
+      <hr>
+
+      <h3>My Path Into Science</h3>
+      <p>I began my academic journey at <strong>Cape Cod Community College</strong>, where I participated in an internship program at the <strong>Woods Hole Oceanographic Institution</strong>.</p>
+
+      <p>After earning my associate degree, I transferred to the <strong>University of Massachusetts Amherst</strong> and joined the <a href="https://lmkomoroske.com" target="_blank"><strong>Molecular Ecology & Conservation Lab</strong></a> as an undergraduate researcher in 2022. After completing my bachelor’s degree in Biology, I continued in the lab as manager for Dr. Lisa Komoroske, leading projects and supporting a wide range of ecological and genomic research.</p>
+
+      <p>I’m now pursuing my PhD in Organismal and Evolutionary Biology at UMass Amherst with Dr. Komoroske, where my research explores how marine organisms respond and adapt to environmental change.</p>
+
+      <hr>
+
+      <h3>My Research</h3>
+      <p>I study how life in the ocean adapts to change. My work combines genetics, behavior, and environmental data to understand how temperature, oxygen, and other shifting conditions influence where marine species live, move, and persist.</p>
+
+      <hr>
+
+      <h3>Outside the Lab</h3>
+      <p>When I’m not knee-deep in data or saltwater, I’m usually experimenting in my other lab, the kitchen. Baking is just lab work that smells better. Outside the kitchen, I spend time in the mountains exploring with my husband and our two dogs, Koji and Remus, who are excellent reminders to stay curious and enjoy the process.</p>
+
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <section class="split contact">
+      <section class="alt">
+        <h3>Affiliation</h3>
+        <p><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">University of Massachusetts Amherst, OEB Program</a></p>
+      </section>
+      <section>
+        <h3>ORCiD</h3>
+        <p><a href="https://orcid.org/0009-0008-1202-4962" target="_blank">0009-0008-1202-4962</a></p>
+      </section>
+      <section>
+        <h3>Email</h3>
+        <p><a href="mailto:your@email.com">your@email.com</a></p>
+      </section>
+      <section>
+        <h3>Social</h3>
+        <ul class="icons alt">
+          <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+        </ul>
+      </section>
+    </section>
+  </footer>
+
+  <div id="copyright">
+    <ul>
+      <li>&copy; Mikayla Newbrey</li>
+      <li>All Views Expressed Are My Own</li>
+    </ul>
+  </div>
+
+</div>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.scrollex.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+
+{% include search.html %}
+
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
