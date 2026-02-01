@@ -14,22 +14,23 @@ section: Home
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
 
     <style>
-      /* Fix Research Focus icon label overlap */
+      /* --- Research Focus icon labels: force below icons, no overlap --- */
+
       .icons.major li {
         position: relative;
       }
 
+      /* Override theme label placement */
       .icons.major .label {
-        position: absolute;
-        top: calc(100% + 1.25rem);
-        left: 50%;
-        transform: translateX(-50%);
-        width: max-content;
+        position: static;
+        display: block;
+        margin-top: 1.25rem;
         text-align: center;
         opacity: 0;
-        pointer-events: none;
+        transition: opacity 0.25s ease;
       }
 
+      /* Show label on hover */
       .icons.major li:hover .label {
         opacity: 1;
       }
