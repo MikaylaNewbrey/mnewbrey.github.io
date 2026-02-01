@@ -12,12 +12,46 @@ layout: none
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
+
+    <style>
+      /* tighten vertical rhythm without redesign */
+      #posts.wrapper {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+
+      #posts .inner {
+        margin-top: -1rem;
+      }
+
+      .journal-entry {
+        margin-bottom: 2.5rem;
+      }
+
+      .journal-entry h3 {
+        margin-bottom: 0.4rem;
+      }
+
+      .journal-entry p.meta {
+        font-size: 0.85em;
+        opacity: 0.6;
+        margin-bottom: 0.75rem;
+      }
+
+      .journal-entry p.excerpt {
+        margin-bottom: 0.75rem;
+      }
+
+      .button.small {
+        margin-top: 0;
+      }
+    </style>
   </head>
 
   <body class="is-preload">
     <div id="page-wrapper">
 
-      <!-- Header (MATCHES ABOUT PAGE) -->
+      <!-- Header -->
       <header id="header">
         <h1><a href="{{ '/' | relative_url }}">Mikayla Newbrey</a></h1>
         <nav id="nav">
@@ -55,17 +89,17 @@ layout: none
 
           {% assign all_posts = site.posts | sort: 'date' | reverse %}
           {% for post in all_posts %}
-          <article style="margin-bottom:3rem; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:2rem;">
+          <article class="journal-entry">
             <header>
-              <h3 style="margin-bottom:0.5rem;">
+              <h3>
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
               </h3>
-              <p style="font-size:0.85em; opacity:0.6; margin-bottom:1rem;">
+              <p class="meta">
                 {{ post.date | date: "%B %d, %Y" }}
               </p>
             </header>
 
-            <p>
+            <p class="excerpt">
               {{ post.description | default: post.summary | default: post.excerpt | strip_html | truncate: 220 }}
             </p>
 
