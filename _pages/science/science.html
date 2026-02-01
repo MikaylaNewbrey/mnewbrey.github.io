@@ -2,30 +2,22 @@
 title: Science in Action
 permalink: /science/
 layout: none
-section: Science in Action
 ---
 
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
   <head>
+    <title>{{ page.title }} – {{ site.title }}</title>
     <meta charset="utf-8" />
-    <title>Science in Action – Mikayla Newbrey</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | relative_url }}" /></noscript>
 
     <style>
-      /* --- Page-specific refinement --- */
-
       .science-intro {
         max-width: 48rem;
         margin: 0 auto 3rem auto;
-        text-align: left;
-      }
-
-      .science-intro p {
-        font-size: 1.05rem;
         opacity: 0.85;
       }
 
@@ -37,16 +29,16 @@ section: Science in Action
 
       .science-item h3 {
         font-size: 0.95rem;
-        margin-bottom: 0.4rem;
+        margin: 0.6rem 0 0.25rem 0;
       }
 
       .science-item p {
         font-size: 0.85rem;
         opacity: 0.7;
-        margin-bottom: 0;
+        margin: 0;
       }
 
-      /* --- Lightbox --- */
+      /* Lightbox */
       .lb {
         position: fixed;
         inset: 0;
@@ -91,51 +83,54 @@ section: Science in Action
     </style>
   </head>
 
-  <body class="is-preload">
-    <div id="wrapper">
+  <body class="landing is-preload">
+    <div id="page-wrapper">
 
       <!-- Header -->
-      <header id="header">
-        <a href="{{ '/' | relative_url }}" class="logo">Mikayla Newbrey</a>
+      <header id="header" class="alt">
+        <h1><a href="{{ '/' | relative_url }}">Mikayla Newbrey</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                  <li><a href="{{ '/posts/' | relative_url }}">Commonplace Journal</a></li>
+                  <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+                  <li><a href="{{ '/science/' | relative_url }}">Science in Action</a></li>
+                  <li>
+                    <button id="open-search" type="button" style="width:100%;"
+                      onclick="window.__openSearch && window.__openSearch()">Search</button>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
       </header>
 
-      <!-- Nav -->
-      <nav id="nav">
-        <ul class="links">
-          <li><a href="{{ '/posts/' | relative_url }}">Commonplace Journal</a></li>
-          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-          <li class="active"><a href="{{ '/science/' | relative_url }}">Science In Action</a></li>
-        </ul>
-
-        <div style="display:flex;align-items:center;gap:1rem;">
-          <button id="open-search" type="button" aria-label="Open search"
-            class="nav-icon" onclick="window.__openSearch && window.__openSearch()">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </button>
+      <!-- Banner -->
+      <section id="banner">
+        <div class="inner">
+          <h2>Science in Action</h2>
+          <p>Field and laboratory documentation from ongoing research.</p>
         </div>
-      </nav>
+        <a href="#content" class="more scrolly">Browse</a>
+      </section>
 
       <!-- Main -->
-      <div id="main">
-        <section class="post">
-
-          <header class="major">
-            <h1>Science in Action</h1>
-          </header>
+      <section id="content" class="wrapper alt style2">
+        <div class="inner">
 
           <div class="science-intro">
             <p>
-              This page documents science as it actually happens, in the field, in the lab, and in between.
-              These are working moments, methods in progress, and visual notes from ongoing research.
-              Not polished results, but the process itself.
+              This page captures science as it unfolds. Fieldwork, lab methods, equipment,
+              organisms, and intermediate steps that rarely make it into finished figures.
+              These are records of process rather than results.
             </p>
           </div>
 
-          <!-- Gallery -->
           {% if site.data.gallery and site.data.gallery.size > 0 %}
           <div class="science-grid">
             {% for item in site.data.gallery %}
@@ -153,50 +148,38 @@ section: Science in Action
             <p>No entries yet. Add items to <code>_data/gallery.yml</code>.</p>
           {% endif %}
 
-        </section>
-      </div>
+        </div>
+      </section>
 
       <!-- Footer -->
       <footer id="footer">
-        <section class="split contact">
-          <section class="alt">
-            <h3>Affiliation</h3>
-            <p>
-              <a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">
-                University of Massachusetts Amherst, OEB
-              </a>
-            </p>
-          </section>
+        <ul class="icons">
+          <li>
+            <a href="https://orcid.org/0009-0008-1202-4962"
+               class="icon brands fa-orcid" target="_blank">
+              <span class="label">ORCiD</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/" class="icon brands fa-github" target="_blank">
+              <span class="label">GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@untitled.tld" class="icon solid fa-envelope">
+              <span class="label">Email</span>
+            </a>
+          </li>
+        </ul>
 
-          <section>
-            <h3>ORCiD</h3>
-            <p>
-              <a href="https://orcid.org/0009-0008-1202-4962" target="_blank">
-                0009-0008-1202-4962
-              </a>
-            </p>
-          </section>
-
-          <section>
-            <h3>Email</h3>
-            <p><a href="mailto:info@untitled.tld">info@untitled.tld</a></p>
-          </section>
-
-          <section>
-            <h3>Social</h3>
-            <ul class="icons alt">
-              <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-            </ul>
-          </section>
-        </section>
-      </footer>
-
-      <div id="copyright">
-        <ul>
+        <ul class="copyright">
           <li>&copy; {{ site.time | date: '%Y' }} Mikayla Newbrey</li>
+          <li><a href="https://www.umass.edu/organismic-evolutionary/" target="_blank">
+            UMass Amherst, OEB</a></li>
           <li>All views expressed are my own</li>
         </ul>
-      </div>
+      </footer>
+
     </div>
 
     <!-- Scripts -->
