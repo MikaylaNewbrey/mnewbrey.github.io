@@ -30,8 +30,3 @@ Posts here may include:
 Most entries will follow a loose structure when helpful. Headings, figures, and links are used as needed.
 
 Dates reflect when notes were written, not when ideas were finalized.
-
-## Closing Note
-
-This journal is cumulative. Older entries may be revised, contradicted, or expanded upon as my understanding evolves.
-
