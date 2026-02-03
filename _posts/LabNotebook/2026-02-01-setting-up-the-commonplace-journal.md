@@ -12,27 +12,26 @@ toc: true
 
 ## What This Is
 
-This Commonplace Journal serves as a working archive of ideas, observations, methods, and references. Entries may be partial, provisional, or exploratory rather than polished or conclusive.
+This Commonplace Journal serves as a working archive of ideas, observations, and references. Entries may be partial, provisional, or exploratory rather than polished.
 
-Thinking of this as a place to collect thoughts, document process, and collect fragments that inform ongoing work.
+I am approaching of this as a place to collect thoughts, document processes, and collect fragments that inform ongoing work.
 
-## How Entries Are Used
+### How Entries Are Used
 
 Posts here may include:
 - Research notes and field observations  
-- Methods, workflows, or lab-related documentation  
-- Conceptual sketches and early-stage ideas  
-- References worth revisiting later  
+- Methods, workflows, or lab-related documentation    
+- References worth revisiting later
+- Ramblings
+- Quotes I draw inspiration from 
 
-Not every entry is meant to stand alone or reach a conclusion.
+### On Structure
 
-## On Structure
-
-Most entries will follow a loose structure when helpful. Headings, figures, and links are used as needed rather than by rule.
+Most entries will follow a loose structure when helpful. Headings, figures, and links are used as needed.
 
 Dates reflect when notes were written, not when ideas were finalized.
 
 ## Closing Note
 
-This journal is cumulative. Older entries may be revised, contradicted, or expanded upon as understanding evolves.
+This journal is cumulative. Older entries may be revised, contradicted, or expanded upon as my understanding evolves.
 
